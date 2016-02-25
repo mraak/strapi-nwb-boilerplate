@@ -10,7 +10,8 @@ import { waitFor } from "../decorators";
 import DynamicForm from "../DynamicForm";
 
 import actions from "./actions";
-import { osebniPodatki, dohodek, izdatki, lastniskiIzdatki, zivljenjskiIzdatki, pokojnina, izdatkiVPokoju, obveznostiMedUpokojitvijo, pokojninskaRezerva, otrokovoIzobrazevanje, otrok1 } from "./IFVFormModel";
+import { osebniPodatki, dohodek, izdatki, lastniskiIzdatki, zivljenjskiIzdatki, pokojnina, izdatkiVPokoju, obveznostiMedUpokojitvijo, pokojninskaRezerva, otrokovoIzobrazevanje, otrok1,
+        zdravjeVPokoju, zascitaZivljenja, zascitaDelovneSposobnosti, analizaStroskov, upravljanjeMojegaPremozenja, analizaStroskovInPregledProduktov, financniStres} from "./IFVFormModel";
 
 @waitFor(({ api: { sections } }) => [ sections.data ])
 @connect(state => state, actions)
@@ -104,6 +105,61 @@ export default class IFVForm extends Component {
         model: otrok1,
         data: sections.data.otrok1,
         fields: ["id", "ime", "starost", "znesekZaStudij", "odstotekStroskov", "naslov", "mesecnoVarcevanje_mesecno", "mesecnoVarcevanje_trenutno", "naslov2", "enkratnoInvestiranje"]
+      },
+      {
+        key: "zdravjeVPokoju",
+        title: "Zdravje in zdravljenje v pokoju",
+        model: zdravjeVPokoju,
+        data: sections.data.zdravjeVPokoju,
+        fields: ["id", "naslov", "varcujeteZaZdravje", "naslov2", "varcevanjeZaOtroka_mesecno", "varcevanjeZaOtroka_trenutno", "naslov3", "enkratnoInvestiranje"]
+      },
+      {
+        key: "zascitaZivljenja",
+        title: "Zaščita življenja",
+        model: zascitaZivljenja,
+        data: sections.data.zascitaZivljenja,
+        fields: ["id", "partnerOdvisen", "partnerOdvisen_dodatek1", "partnerOdvisen_dodatek2", "partnerOdvisen_dodatek3", "znesekDohodkaZaPartnerja", "dodatenDohodek", "steviloOtrok",
+        "steviloOtrok_dodatek", "procentStroskovZaPlacati", "mesecniZnesekDohodka", "glavnicaDolgov", "zavarovanjaZivljenje", "zavarovanjaKrediti"]
+      },
+      {
+        key: "zascitaDelovneSposobnosti",
+        title: "Zaščita delovne sposobnosti",
+        model: zascitaDelovneSposobnosti,
+        data: sections.data.zascitaDelovneSposobnosti,
+        fields: ["id", "naslov", "delovnaDoba", "odstotekZaInvalidskoPokojnino", "invalidskaPokojnina", "lastniskiIzdatki", "zivljenjskiIzdatki", "izdatkiSkupaj", "vrednostZavarovanjInvalidnost", "vrednostZavarovanjBolezni"]
+      },
+      {
+        key: "analizaStroskov",
+        title: "Analiza stroškov",
+        model: analizaStroskov,
+        data: sections.data.analizaStroskov,
+        fields: ["id", "analizaStroskov"]
+      },
+      {
+        key: "upravljanjeMojegaPremozenja",
+        title: "Upravljanje mojega premoženja",
+        model: upravljanjeMojegaPremozenja,
+        data: sections.data.upravljanjeMojegaPremozenja,
+        fields: ["id", "splosnoZnanje", "pregledNalozb", "nalozbePrilagojene", "analizaStroskovNalozbInVarcevalnihProduktov", "razlikeMedOsebjem"]
+      },
+      {
+        key: "analizaStroskovInPregledProduktov",
+        title: "Analiza stroškov in pregled produktov",
+        model: analizaStroskovInPregledProduktov,
+        data: sections.data.analizaStroskovInPregledProduktov,
+        fields: ["id", "naslov", "steviloProduktov", "tipProdukta", "tipProdukta_mesecniZnesek", "tipProdukta_trenutnaVrednost", "naslov2", "zavarovanjaNaProduktu_zivljenskoZavarovanje", "zavarovanjaNaProduktu_dodatnaZavarovanja",
+        "zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje", "zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni", "zavarovanjaNaProduktu_strosekDodatnihZavarovanj", "naslov3", "steviloProduktov2",
+        "tipProdukta2", "tipProdukta_mesecniZnesek2", "tipProdukta_trenutnaVrednost2", "naslov4", "zavarovanjaNaProduktu_zivljenskoZavarovanje2", "zavarovanjaNaProduktu_dodatnaZavarovanja2",
+        "zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2", "zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2", "zavarovanjaNaProduktu_strosekDodatnihZavarovanj2", "naslov5", "denarnaSredstva", "vzajemniSkladi",
+        "delnice", "enkratniNalozbeniProdukti", "naslov6", "zavarovanja1", "zavarovanja2", "zavarovanja3", "zavarovanja4", "zavarovanja5", "naslov7", "denarnaSredstva2", "vzajemniSkladi2", "delnice2",
+        "enkratniNalozbeniProdukti2", "naslov8", "zavarovanja11", "zavarovanja22", "zavarovanja33", "zavarovanja44", "zavarovanja55"]
+      },
+      {
+        key: "financniStres",
+        title: "Finančni stres",
+        model: financniStres,
+        data: sections.data.financniStres,
+        fields: ["id", "nivo", "razlog"]
       }
     ];
 

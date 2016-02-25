@@ -809,7 +809,7 @@ export const otrokovoIzobrazevanje =  {
     value: "DA"
   },
   varcevanjeZaOtrokovoIzobrazevanje_dodatek: {
-    label: "*** dodatek",
+    label: "Število otrok, ki gredo študirat",
     helpText: "",
     required: true,
     type: "range",
@@ -943,36 +943,960 @@ export const otrok1 =  {
   }
 };
 
-// export const zdravjeVPokoju =  {
-//   naslov: {
-//     label: "",
-//     helpText: "",
-//     required: true,
-//     type: "text",
-//     props: {
-//     },
-//     value: "*** Tega fielda ne sme biti, saj gre samo za podnaslov *** <i><u>2.000 EUR</u> letno oziroma <u>167 EUR</u> mesečno v povprečju je neposreden izdatek oziroma izdatek iz žepa za zdravje in zdravljenje v pokoju.</i>"
-//   },
-//   varcujeteZaZdravje: {
-//     label: "Ali varčujete za zdravje in zdravljenje v pokoju?",
-//     helpText: "",
-//     required: true,
-//     type: "radio-list",
-//     props: {
-//       items: [
-//         { label: "Da", value: "DA" },
-//         { label: "Ne", value: "NE" }
-//       ]
-//     },
-//     value: ""
-//   },
-//   naslov: {
-//     label: "(Naslov za naslednja 2 DDL): Trenutno mesečno varčevanje za otrokovo izobraževanje",
-//     helpText: "",
-//     required: true,
-//     type: "text",
-//     props: {
-//     },
-//     value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
-//   },
-// };
+export const zdravjeVPokoju =  {
+  naslov: {
+    label: "",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za podnaslov *** <i><u>2.000 EUR</u> letno oziroma <u>167 EUR</u> mesečno v povprečju je neposreden izdatek oziroma izdatek iz žepa za zdravje in zdravljenje v pokoju.</i>"
+  },
+  varcujeteZaZdravje: {
+    label: "Ali varčujete za zdravje in zdravljenje v pokoju?",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Da", value: "DA" },
+        { label: "Ne", value: "NE" }
+      ]
+    },
+    value: ""
+  },
+  naslov2: {
+    label: "(Naslov za naslednja 2 DDL): Trenutno mesečno varčevanje za zdravje v pokoju",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+  },
+  varcevanjeZaOtroka_mesecno: {
+    label: "Mesečni znesek",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 200,
+      step: 1
+    },
+    value: 50
+  },
+  varcevanjeZaOtroka_trenutno: {
+    label: "Trenutna vrednost",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50000,
+      step: 100
+    },
+    value: 1000
+  },
+  naslov3: {
+    label: "(Naslov za naslednji DDL): Enkratno investiranje za zdravje v pokoju",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+  },
+  enkratnoInvestiranje: {
+    label: "Trenutna vrednost",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50000,
+      step: 100
+    },
+    value: 2500
+  },
+};
+
+/*************** TVEGANJA ***************/
+
+export const zascitaZivljenja =  {
+  partnerOdvisen: {
+    label: "Je partner/ka odvisna od vaših dohodkov?",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Da", value: "DA" },
+        { label: "Ne", value: "NE" }
+      ]
+    },
+    value: "DA"
+  },
+  partnerOdvisen_dodatek1: {
+    label: "Partnerjev mesečni dohodek",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 100
+    },
+    value: 1200
+  },
+  partnerOdvisen_dodatek2: {
+    label: "Starost partnerja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 18,
+      max: 99,
+      step: 1
+    },
+    value: 40
+  },
+  partnerOdvisen_dodatek3: {
+    label: "Leta do upokojitve partnerja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 45,
+      step: 1
+    },
+    value: 25
+  },
+  znesekDohodkaZaPartnerja: {
+    label: "Mesečni znesek dohodka za partnerja za namen vzdrževanja družine",
+    helpText: "(v primeru izpada vašega dohodka)",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000,
+      step: 10
+    },
+    value: 400
+  },
+  dodatenDohodek: {
+    label: "Koliko let je potreben dodaten dohodek za partnerja za namen vzdrževanja družine?",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 1,
+      max: 25,
+      step: 1
+    },
+    value: 14
+  },
+  steviloOtrok: {
+    label: "Število otrok, odvisnih od vaših dohodkov?",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** avtomatsko vrže kar je že gor napisal, če pa je lagal mora še 1x vpisati ***"
+  },
+  steviloOtrok_dodatek: {
+    label: "Starost otroka",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 20,
+      step: 1
+    },
+    value: 5
+  },
+  procentStroskovZaPlacati: {
+    label: "% od celotnih stroškov, ki jih nameravate plačati - zavarovati za študij otroka (%)",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100,
+      step: 1
+    },
+    value: 75
+  },
+  mesecniZnesekDohodka: {
+    label: "Mesečni znesek dohodka za namen vzdrževanja družine",
+    helpText: "(v primeru izpada vašega dohodka)",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 100
+    },
+    value: 700
+  },
+  glavnicaDolgov: {
+    label: "Glavnica vseh dolgov",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100000,
+      step: 100
+    },
+    value: 2000
+  },
+  zavarovanjaZivljenje: {
+    label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito življenja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 200000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaKrediti: {
+    label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito kreditov",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 200000,
+      step: 1000
+    },
+    value: 100000
+  }
+};
+
+export const zascitaDelovneSposobnosti =  {
+  naslov: {
+    label: "Zaščita v primeru invalidnosti in težjih bolezni",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov *** <i>Invalidska pokojnina se odmeri od pokojninske osnove, izračunane na enak način, kot za odmero starostne pokojnine (http://www.zpiz.si/). OPOZORILO: Od vključno delovne dobe do vključno izdatkiSkupaj mora biti že vse predizpolnjeno."
+  },
+  delovnaDoba: {
+    label: "Delovna doba",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 80,
+      step: 1
+    },
+    value: 40
+  },
+  odstotekZaInvalidskoPokojnino: {
+    label: "Višina odstotka za odmero invalidske pokojnine",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  invalidskaPokojnina: {
+    label: "Invalidska pokojnina, ki bi jo prejeli danes",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  lastniskiIzdatki: {
+    label: "Izdatki povezani z lastništvom",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  zivljenjskiIzdatki: {
+    label: "Življenjski izdatki",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  izdatkiSkupaj: {
+    label: "Izdatki skupaj",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  vrednostZavarovanjInvalidnost: {
+    label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito invalidnosti",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 250000
+  },
+  vrednostZavarovanjBolezni: {
+    label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito težjih bolezni",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 300000,
+      step: 1000
+    },
+    value: 100000
+  },
+};
+
+export const analizaStroskov =  {
+  analizaStroskov: {
+    label: "Ste kdaj naredili analizo stroškov vseh zavarovanj, ki jih plačujete?",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Ne, sploh se ne zavedam, kako visoki so stroški vseh sklenjenih zavarovanj.", value: "1" },
+        { label: "Ne, nisem naredil analize, vendar se zavedam, da s sklenitvijo pridejo tudi stroški.", value: "2" },
+        { label: "Da, naložbe sem izbral preudarno. Imam najcenejše zavarovalne produkte na trgu.", value: "3" },
+        { label: "Nimam sklenjenega nobenega zavarovanja.", value: "4" }
+      ]
+    },
+    value: ""
+  }
+};
+
+/*************** PREMOŽENJE ***************/
+
+export const upravljanjeMojegaPremozenja =  {
+  splosnoZnanje: {
+    label: "Splošno znanje o naložbah, varčevanju in borznih trgih",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Ne vem veliko o vlaganju na finančne trge", value: "1" },
+        { label: "Sem seznanjen z osnovnimi finančnimi pojmi, vendar ne vem, kako jih uporabiti v svojem življenju.", value: "2" },
+        { label: "Osvojil sem osnove investiranja in varčevanja, imam kar nekaj izkušenj, vendar bi rad dobil drugo mnenje, da se prepričam ali sem na pravi poti.", value: "3" },
+        { label: "Sam aktivno upravljam svoje naložbe. Prepričan sem, da sam sprejemam najboljše finančne odločitve za svoje finančne cilje.", value: "4" }
+      ]
+    },
+    value: ""
+  },
+  pregledNalozb: {
+    label: "Kako pogosto pregledate svoje naložbe=",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Naložb ne spremljam.", value: "1" },
+        { label: "Naložbe spremljam enkrat letno.", value: "2" },
+        { label: "Naložbe spremljam vsake tri mesece.", value: "3" },
+        { label: "Naložbe pregledam vsaj enkrat mesečno.", value: "4" },
+        { label: "Trenutno nimam nobenih naložb.", value: "5" }
+      ]
+    },
+    value: ""
+  },
+  nalozbePrilagojene: {
+    label: "Prepričan sem, da so moje naložbe prilagojene trenutnim trendom na trgu, mojemu tveganju in mojim ciljem.",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Da", value: "DA" },
+        { label: "Ne", value: "NE" },
+        { label: "Ne vem", value: "NEVEM" },
+        { label: "Trenutno nimam nobenih naložb.", value: "NIC" }
+      ]
+    },
+    value: ""
+  },
+  analizaStroskovNalozbInVarcevalnihProduktov: {
+    label: "Ste kdaj naredili analizo stroškov vseh naložb in varčevalnih produktov?",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Ne, sploh se ne zavedam, kako visoki so stroški naložb in varčevanj.", value: "1" },
+        { label: "Ne, nisem naredil analize, vendar se zavedam, da s sklenitvijo pridejo tudi stroški.", value: "2" },
+        { label: "Da, naložbe sem izbral preudarno. Imam najcenejše naložbe in varčevanja na trgu.", value: "3" },
+        { label: "Trenutno nimam nobenih naložb.", value: "4" }
+      ]
+    },
+    value: ""
+  },
+  razlikeMedOsebjem: {
+    label: "Ali veste kakšna je razlika med osebnim finančnim svetovalcem, zavarovalnim agentom, osebnim bančnikom in upravljalcem premoženja?",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Ne", value: "NE" },
+        { label: "Da", value: "DA" },
+        { label: "Zame ni razlike med njimi", value: "NIC" }
+      ]
+    },
+    value: ""
+  }
+};
+
+export const analizaStroskovInPregledProduktov =  {
+  naslov: {
+    label: "VARČEVANJA",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov (VARČEVANJA); kar je tu naprej je podnaslov, fielda vseeno ne sme biti*** Trenutno mesečno varčevanje za pokojnino (3. steber)"
+  },
+  steviloProduktov: {
+    label: "Število produktov",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** max 15 ***"
+  },
+  tipProdukta: {
+    label: "Tip produkta (DDL: Klasično življenjsko zavarovanje; Naložbeno življenjsko zavarovanje; Investicijsko zavarovanje; Prostovoljno pokojninsko zavarovanje; Varčevanje v vzajemnih skladih; Varčevanje na banki)",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "DDL"
+  },
+  tipProdukta_mesecniZnesek: {
+    label: "Mesečni znesek",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 10
+    },
+    value: 5000
+  },
+  tipProdukta_trenutnaVrednost: {
+    label: "Trenutna vrednost",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 10
+    },
+    value: 5000
+  },
+  naslov2: {
+    label: "Zavarovanja na produktu",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** tega fielda ne sme biti, ker gre samo za naslov naslednjih 5 sliderjev ***"
+  },
+  zavarovanjaNaProduktu_zivljenskoZavarovanje: {
+    label: "Življenjsko zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnaZavarovanja: {
+    label: "Dodatna zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje: {
+    label: "Dodatno nezgodno zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni: {
+    label: "Dodatno zavarovanje hujših bolezni",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_strosekDodatnihZavarovanj: {
+    label: "Strošek dodatnih zavarovanj",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  naslov3: {
+    label: "Trenutno mesečno varčevanje za otrokovo izobraževanje",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** tega fielda ne sme biti, ker gre samo za naslov text inputa ***"
+  },
+  steviloProduktov2: {
+    label: "Število produktov",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: ""
+  },
+  tipProdukta2: {
+    label: "Tip produkta (DDL: Klasično življenjsko zavarovanje; Naložbeno življenjsko zavarovanje; Investicijsko zavarovanje; Prostovoljno pokojninsko zavarovanje; Varčevanje v vzajemnih skladih; Varčevanje na banki)",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "DDL"
+  },
+  tipProdukta_mesecniZnesek2: {
+    label: "Mesečni znesek",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 10
+    },
+    value: 5000
+  },
+  tipProdukta_trenutnaVrednost2: {
+    label: "Trenutna vrednost",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 10000,
+      step: 10
+    },
+    value: 5000
+  },
+  naslov4: {
+    label: "Zavarovanja na produktu",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** tega fielda ne sme biti, ker gre samo za naslov naslednjih 5 sliderjev ***"
+  },
+  zavarovanjaNaProduktu_zivljenskoZavarovanje2: {
+    label: "Življenjsko zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnaZavarovanja2: {
+    label: "Dodatna zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2: {
+    label: "Dodatno nezgodno zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2: {
+    label: "Dodatno zavarovanje hujših bolezni",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanjaNaProduktu_strosekDodatnihZavarovanj2: {
+    label: "Strošek dodatnih zavarovanj",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 1000000,
+      step: 1000
+    },
+    value: 50000
+  },
+  naslov5: {
+    label: "INVESTIRANJE",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov (INVESTIRANJE); kar je tu naprej je podnaslov, fielda vseeno ne sme biti*** Enkratno investiranje za pokojnino"
+  },
+  denarnaSredstva: {
+    label: "Denarna sredstva",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  vzajemniSkladi: {
+    label: "Vzajemni skladi",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  delnice: {
+    label: "Delnice in ostali instrumenti",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  enkratniNalozbeniProdukti: {
+    label: "Enkratni naložbeni produkti",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50000,
+      step: 100
+    },
+    value: 10000
+  },
+  naslov6: {
+    label: "",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov naslednjih 5 rangov *** Zavarovanja na produktu"
+  },
+  zavarovanja1: {
+    label: "Življenjsko zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanja2: {
+    label: "Dodatna zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanja3: {
+    label: "Dodatno nezgodno zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 150000,
+      step: 1000
+    },
+    value: 75000
+  },
+  zavarovanja4: {
+    label: "Dodatno zavarovanje hujših bolezni",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 150000,
+      step: 1000
+    },
+    value: 75000
+  },
+  zavarovanja5: {
+    label: "Strošek dodatnih zavarovanj",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50,
+      step: 1
+    },
+    value: 25
+  },
+  naslov7: {
+    label: "",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za podnaslov *** Enkratno investiranje za otrokovo izobraževanje"
+  },
+  denarnaSredstva2: {
+    label: "Denarna sredstva",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  vzajemniSkladi2: {
+    label: "Vzajemni skladi",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  delnice2: {
+    label: "Delnice in ostali instrumenti",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 2000000,
+      step: 1000
+    },
+    value: 200000
+  },
+  enkratniNalozbeniProdukti2: {
+    label: "Enkratni naložbeni produkti",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50000,
+      step: 100
+    },
+    value: 10000
+  },
+  naslov8: {
+    label: "",
+    helpText: "",
+    required: true,
+    type: "text",
+    props: {
+    },
+    value: "*** Tega fielda ne sme biti, saj gre samo za naslov naslednjih 5 rangov *** Zavarovanja na produktu"
+  },
+  zavarovanja11: {
+    label: "Življenjsko zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanja22: {
+    label: "Dodatna zavarovanja",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 100000,
+      step: 1000
+    },
+    value: 50000
+  },
+  zavarovanja33: {
+    label: "Dodatno nezgodno zavarovanje",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 150000,
+      step: 1000
+    },
+    value: 75000
+  },
+  zavarovanja44: {
+    label: "Dodatno zavarovanje hujših bolezni",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 150000,
+      step: 1000
+    },
+    value: 75000
+  },
+  zavarovanja55: {
+    label: "Strošek dodatnih zavarovanj",
+    helpText: "",
+    required: true,
+    type: "range",
+    props: {
+      min: 0,
+      max: 50,
+      step: 1
+    },
+    value: 25
+  }
+};
+
+export const financniStres =  {
+  nivo: {
+    label: "Prosim ovrednotite svoj nivo finančnega stresa",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Nimam finančnega stresa", value: "1" },
+        { label: "Sem malce pod finančnim stresom", value: "2" },
+        { label: "Moj finančni stres je visok", value: "3" },
+        { label: "Moj finančni stres je neobvladljiv", value: "4" }
+      ]
+    },
+    value: ""
+  },
+  razlog: {
+    label: "Kaj je glavni razlog vašega finančnega stresa? (v kolikor je prisoten)",
+    helpText: "",
+    required: true,
+    type: "radio-list",
+    props: {
+      items: [
+        { label: "Nimam finančnega stresa", value: "1" },
+        { label: "Imam občutek, da moja finančna situacija ni pod kontrolo", value: "2" },
+        { label: "Mislim, da v prihodnosti ne bom dosegel/la svojih finančnih ciljev", value: "3" },
+        { label: "Želim strokovno in kredibilno finančno svetovanje, vendar ne vem komu lahko zaupam", value: "4" },
+        { label: "Skrbijo me geopolitična dogajanja in posledično dogajanja na finančnih trgih. Ne vem, kako bo to vplivalo na mojo \"finančno\" prihodnost", value: "5" }
+      ]
+    },
+    value: ""
+  }
+};
