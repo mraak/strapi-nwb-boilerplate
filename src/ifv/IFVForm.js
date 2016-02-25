@@ -10,7 +10,7 @@ import { waitFor } from "../decorators";
 import DynamicForm from "../DynamicForm";
 
 import actions from "./actions";
-import { section1, section2 } from "./IFVFormModel";
+import { osebniPodatki, dohodek, izdatki, lastniskiIzdatki, zivljenjskiIzdatki, pokojnina, izdatkiVPokoju, obveznostiMedUpokojitvijo, pokojninskaRezerva, otrokovoIzobrazevanje, otrok1 } from "./IFVFormModel";
 
 @waitFor(({ api: { sections } }) => [ sections.data ])
 @connect(state => state, actions)
@@ -26,24 +26,84 @@ export default class IFVForm extends Component {
 
     const forms = [
       {
-        key: "section1",
-        title: "Section 1",
-        model: section1,
-        data: sections.data.section1,
-        fields: ["id", "salaryMonthly", "clubContractYearly", "monthlySpendingHabit", "abc"],
-        amount: function({ salaryMonthly, clubContractYearly, monthlySpendingHabit }) {
-          return (salaryMonthly + clubContractYearly) * (monthlySpendingHabit == "DA" ? 50 : 1);
-        }
+        key: "osebniPodatki",
+        title: "Osebni podatki",
+        model: osebniPodatki,
+        data: sections.data.osebniPodatki,
+        fields: ["id", "ime", "starost", "delovnaDoba", "status", "steviloOtrok"]
       },
       {
-        key: "section2",
-        title: "Section 2",
-        model: section2,
-        data: sections.data.section2,
-        fields: ["id", "salaryMonthly", "clubContractYearly", "monthlySpendingHabit"],
-        amount: function({ salaryMonthly, clubContractYearly, monthlySpendingHabit }) {
-          return (salaryMonthly + clubContractYearly) * (monthlySpendingHabit == "DA" ? 50 : 1);
-        }
+        key: "dohodek",
+        title: "Dohodek",
+        model: dohodek,
+        data: sections.data.dohodek,
+        fields: ["id", "placa", "pogodbaSKlubom", "sponzorstva", "nagrade", "dohodkiOdOddajeNepremicnin", "drugiDohodki"]
+      },
+      {
+        key: "izdatki",
+        title: "Izdatki",
+        model: izdatki,
+        data: sections.data.izdatki,
+        fields: ["id", "kontrola", "koristimLimit", "vsiDolgoviPlacaniPravocasno", "zadolzenost", "rezerva"]
+      },
+      {
+        key: "lastniskiIzdatki",
+        title: "Lastniški izdatki",
+        model: lastniskiIzdatki,
+        data: sections.data.lastniskiIzdatki,
+        fields: ["id", "kreditZaNepremicnino", "kreditZaNepremicnino_dodatek1", "kreditZaNepremicnino_dodatek2", "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine", "vzdrzevanjeNepremicnine_dodatek",
+        "najemnina", "najemnina_dodatek1", "najemnina_dodatek2", "kreditAvto", "kreditAvto_dodatek1", "kreditAvto_dodatek2", "kreditAvto_dodatek3", "vzdrzevanjeAvta", "vzdrzevanjeAvta_dodatek", "ostaliDolgovi"]
+      },
+      {
+        key: "zivljenjskiIzdatki",
+        title: "Življenjski izdatki",
+        model: zivljenjskiIzdatki,
+        data: sections.data.zivljenjskiIzdatki,
+        fields: ["id", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "zavarovanja", "zavarovanja_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"]
+      },
+      {
+        key: "pokojnina",
+        title: "Pokojnina",
+        model: pokojnina,
+        data: sections.data.pokojnina,
+        fields: ["id", "stLetDoUpokojitve", "pricakovanoStLetVPokoju", "dobraPot", "pomembno"]
+      },
+      {
+        key: "izdatkiVPokoju",
+        title: "Izdatki v pokoju",
+        model: izdatkiVPokoju,
+        data: sections.data.izdatkiVPokoju,
+        fields: ["id", "nepremicninskiIzdatki", "nepremicninskiIzdatki_dodatek", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "pomembno", "potovanjaInZabava",
+        "potovanjaInZabava_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"]
+      },
+      {
+        key: "obveznostiMedUpokojitvijo",
+        title: "Pričakovane obveznosti med upokojitvijo",
+        model: obveznostiMedUpokojitvijo,
+        data: sections.data.obveznostiMedUpokojitvijo,
+        fields: ["id", "pricakovanaVrednostHipoteke", "pricakovaniKrediti", "dediscina"]
+      },
+      {
+        key: "pokojninskaRezerva",
+        title: "Privarčevana sredstva za pokojninsko rezervo",
+        model: pokojninskaRezerva,
+        data: sections.data.pokojninskaRezerva,
+        fields: ["id", "naslov", "dodatnoZavarovanje_delodajalec", "dodatnoZavarovanje_posameznik", "dodatnoZavarovanje_trenutno", "naslov2", "trenutnoMesecnoZavarovanje_mesec",
+        "trenutnoMesecnoZavarovanje_trenutno", "naslov3", "enkratnoInvestiranje"]
+      },
+      {
+        key: "otrokovoIzobrazevanje",
+        title: "Sklad za otrokovo izobraževanje",
+        model: otrokovoIzobrazevanje,
+        data: sections.data.otrokovoIzobrazevanje,
+        fields: ["id", "varcevanjeZaOtrokovoIzobrazevanje", "varcevanjeZaOtrokovoIzobrazevanje_dodatek", "kolikoMoramPrivarcevati", "pomembno"]
+      },
+      {
+        key: "otrok1",
+        title: "Otrok 1",
+        model: otrok1,
+        data: sections.data.otrok1,
+        fields: ["id", "ime", "starost", "znesekZaStudij", "odstotekStroskov", "naslov", "mesecnoVarcevanje_mesecno", "mesecnoVarcevanje_trenutno", "naslov2", "enkratnoInvestiranje"]
       }
     ];
 
@@ -57,37 +117,6 @@ export default class IFVForm extends Component {
                 submit={handleSubmit(props.key)}
                 {...props}/>
             ))}
-          </column>
-
-          <column cols="5">
-            <fieldset>
-              <legend>Izračun</legend>
-
-              <table className="table-bordered">
-                <thead>
-                  <tr>
-                    <th>Section</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {forms.map(({ key, title, fields, amount }) => (
-                    <tr>
-                      <td>{title}</td>
-                      <td>{amount(_.mapValues(_.pick(formData[key], fields), "value"))}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="1">Total</td>
-                    <td>{forms.reduce((memo, { key, fields, amount }) => {
-                      return memo + amount(_.mapValues(_.pick(formData[key], fields), "value"));
-                    }, 0)}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </fieldset>
           </column>
         </row>
       </div>
