@@ -6,6 +6,7 @@ import { propTypes } from 'react-props-decorators';
 import { routeActions } from 'react-router-redux';
 import { createAction, handleActions } from 'redux-actions';
 import Preloader from 'react-dots-loader';
+import pureRender from "react-purerender";
 
 function canShow(yes, { api: { user: { status, loggedIn } } }) {
   return status == 1 || yes == !!loggedIn;
@@ -26,6 +27,7 @@ function redirect(yes, path, props) {
 export function authenticated(yes = true, path = null) {
   return function(Component) {
     return @connect(state => state)
+    @pureRender
     class AuthenticatedComponent extends React.Component {
       componentWillMount() {
         redirect(yes, path, this.props);
@@ -52,6 +54,7 @@ export function authenticated(yes = true, path = null) {
 export function waitFor(select) {
   return function(Component) {
     return @connect(state => state)
+    @pureRender
     class Wait extends React.Component {
       render() {
         const fields = select(this.props);
@@ -78,6 +81,7 @@ export const reducer = handleActions({
 export function title(key, select) {
   return function(Component) {
     return @connect(state => state)
+    @pureRender
     class Title extends React.Component {
       componentDidMount() {
         const { dispatch, titles } = this.props;

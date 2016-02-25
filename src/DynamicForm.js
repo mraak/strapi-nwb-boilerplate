@@ -11,6 +11,7 @@ import DatePicker from 'react-date-picker';
 import moment from "moment";
 import Slider from 'rc-slider';
 import R from "ramda";
+import pureRender from "react-purerender";
 
 const validate = (values, {model, fields}) => {
   const errors = {};
@@ -58,10 +59,11 @@ function renderElement({ type, props }, field) {
 
 @reduxForm({
   validate
-}, (state, { data, model, fields, fieldsFunction }) => ({
-  fields: fieldsFunction ? fieldsFunction(data).filter(o => typeof o == "string") : fields,
+}, ({ form }, { id, data, model, fields, fieldsFunction }) => ({
+  fields: fieldsFunction ? fieldsFunction(_.mapValues(form[id], "value")).filter(o => typeof o == "string") : fields,
   initialValues: data || _.mapValues(model, "value")
 }))
+@connect(state => state)
 @propTypes({
   fields: PropTypes.object.isRequired,
   fieldsFunction: PropTypes.func,
@@ -71,6 +73,7 @@ function renderElement({ type, props }, field) {
   submitting: PropTypes.bool
 })
 @css(require("./DynamicForm.less"), { allowMultiple: true })
+@pureRender
 export default class DynamicForm extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.dirty && nextProps.valid && !R.equals(nextProps.values, this.props.values)) {

@@ -3,6 +3,7 @@ import "./elements.less";
 import React, { Component, PropTypes, createElement } from 'react';
 import { Link, IndexLink } from 'react-router';
 import { propTypes, contextTypes } from 'react-props-decorators';
+import pureRender from "react-purerender";
 
 @propTypes({
   name: PropTypes.string.isRequired,
@@ -11,6 +12,7 @@ import { propTypes, contextTypes } from 'react-props-decorators';
 @contextTypes({
   router: PropTypes.object.isRequired
 })
+@pureRender
 export class HeaderLink extends Component {
   render() {
     const { name, path, query, index, className, onClick } = this.props;
@@ -41,6 +43,7 @@ export class HeaderLink extends Component {
 @propTypes({
   title: PropTypes.string.isRequired
 })
+@pureRender
 export class Heading extends Component {
   render() {
     const {title} = this.props;

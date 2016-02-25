@@ -3,6 +3,7 @@ import "./IFVView.css";
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { propTypes } from 'react-props-decorators';
+import pureRender from "react-purerender";
 
 import { authenticated } from "../decorators";
 
@@ -14,6 +15,7 @@ import IFVForm from "./IFVForm";
 @propTypes({
   saveSection: PropTypes.func.isRequired
 })
+@pureRender
 export default class IFVView extends Component {
   render() {
     const { saveSection } = this.props;
