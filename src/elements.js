@@ -12,7 +12,7 @@ import pureRender from "react-purerender";
 @contextTypes({
   router: PropTypes.object.isRequired
 })
-@pureRender
+// @pureRender
 export class HeaderLink extends Component {
   render() {
     const { name, path, query, index, className, onClick } = this.props;
@@ -43,7 +43,7 @@ export class HeaderLink extends Component {
 @propTypes({
   title: PropTypes.string.isRequired
 })
-@pureRender
+// @pureRender
 export class Heading extends Component {
   render() {
     const {title} = this.props;

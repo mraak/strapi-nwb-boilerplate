@@ -15,7 +15,7 @@ import IFVForm from "./IFVForm";
 @propTypes({
   saveSection: PropTypes.func.isRequired
 })
-@pureRender
+// @pureRender
 export default class IFVView extends Component {
   render() {
     const { saveSection } = this.props;

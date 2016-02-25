@@ -59,10 +59,15 @@ function renderElement({ type, props }, field) {
 
 @reduxForm({
   validate
-}, ({ form }, { id, data, model, fields, fieldsFunction }) => ({
-  fields: fieldsFunction ? fieldsFunction(_.mapValues(form[id], "value")).filter(o => typeof o == "string") : fields,
-  initialValues: data || _.mapValues(model, "value")
-}))
+}, ({ form }, { id, data, model, fields, fieldsFunction }) => {
+  const keys = fieldsFunction ? fieldsFunction(_.mapValues(form[id], "value")).filter(o => typeof o == "string") : fields;
+
+  return {
+    fields: keys,
+    fieldKeys: keys,
+    initialValues: data || _.mapValues(model, "value")
+  };
+})
 @connect(state => state)
 @propTypes({
   fields: PropTypes.object.isRequired,
@@ -73,21 +78,21 @@ function renderElement({ type, props }, field) {
   submitting: PropTypes.bool
 })
 @css(require("./DynamicForm.less"), { allowMultiple: true })
-@pureRender
+// @pureRender
 export default class DynamicForm extends Component {
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.dirty && nextProps.valid && !R.equals(nextProps.values, this.props.values)) {
-      const { handleSubmit, submit } = nextProps;
-
-      console.log("form change", this.props.values, nextProps.values);
-      // this.onFormFieldChange(nextProps.values);
-
-      // handleSubmit(nextProps.values);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(nextProps.dirty && nextProps.valid && !R.equals(nextProps.values, this.props.values)) {
+  //     const { handleSubmit, submit } = nextProps;
+  //
+  //     console.log("form change", this.props.values, nextProps.values);
+  //     // this.onFormFieldChange(nextProps.values);
+  //
+  //     // handleSubmit(nextProps.values);
+  //   }
+  // }
 
   render() {
-    const { title, model, fields, handleSubmit, resetForm, submit, submitting, error } = this.props;
+    const { fieldKeys, title, model, fields, handleSubmit, resetForm, submit, submitting, error } = this.props;
 
     return (
       <form className="forms" onSubmit={handleSubmit(submit)}>
@@ -96,7 +101,7 @@ export default class DynamicForm extends Component {
         <fieldset>
           {title && <legend>{title}</legend>}
 
-          {Object.keys(fields).filter(key => !!model[key]).map(key => {
+          {fieldKeys.filter(key => !!model[key]).map(key => {
             let element = model[key];
             let field = fields[key];
 

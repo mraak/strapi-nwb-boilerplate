@@ -27,7 +27,7 @@ function redirect(yes, path, props) {
 export function authenticated(yes = true, path = null) {
   return function(Component) {
     return @connect(state => state)
-    @pureRender
+    // @pureRender
     class AuthenticatedComponent extends React.Component {
       componentWillMount() {
         redirect(yes, path, this.props);
@@ -54,7 +54,7 @@ export function authenticated(yes = true, path = null) {
 export function waitFor(select) {
   return function(Component) {
     return @connect(state => state)
-    @pureRender
+    // @pureRender
     class Wait extends React.Component {
       render() {
         const fields = select(this.props);
@@ -81,7 +81,7 @@ export const reducer = handleActions({
 export function title(key, select) {
   return function(Component) {
     return @connect(state => state)
-    @pureRender
+    // @pureRender
     class Title extends React.Component {
       componentDidMount() {
         const { dispatch, titles } = this.props;
