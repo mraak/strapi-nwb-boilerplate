@@ -10,6 +10,7 @@ import RadioGroup from 'react-radio';
 import DatePicker from 'react-date-picker';
 import moment from "moment";
 import Slider from 'rc-slider';
+import R from "ramda";
 
 const validate = (values, {model, fields}) => {
   const errors = {};
@@ -57,15 +58,31 @@ function renderElement({ type, props }, field) {
 
 @reduxForm({
   validate
-}, (state, { data, model }) => ({ initialValues: data || _.mapValues(model, "value") }))
+}, (state, { data, model, fields, fieldsFunction }) => ({
+  fields: fieldsFunction ? fieldsFunction(data).filter(o => typeof o == "string") : fields,
+  initialValues: data || _.mapValues(model, "value")
+}))
 @propTypes({
   fields: PropTypes.object.isRequired,
+  fieldsFunction: PropTypes.func,
+  handleChange: PropTypes.func,
   handleSubmit: PropTypes.func,
   resetForm: PropTypes.func.isRequired,
   submitting: PropTypes.bool
 })
 @css(require("./DynamicForm.less"), { allowMultiple: true })
 export default class DynamicForm extends Component {
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.dirty && nextProps.valid && !R.equals(nextProps.values, this.props.values)) {
+      const { handleSubmit, submit } = nextProps;
+
+      console.log("form change", this.props.values, nextProps.values);
+      // this.onFormFieldChange(nextProps.values);
+
+      // handleSubmit(nextProps.values);
+    }
+  }
+
   render() {
     const { title, model, fields, handleSubmit, resetForm, submit, submitting, error } = this.props;
 

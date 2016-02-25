@@ -30,7 +30,8 @@ export default class IFVForm extends Component {
         title: "Section 1",
         model: section1,
         data: sections.data.section1,
-        fields: ["id", "salaryMonthly", "clubContractYearly", "monthlySpendingHabit", "abc"],
+        // fields: ["id", "salaryMonthly", "clubContractYearly", "monthlySpendingHabit"],
+        fieldsFunction: (data) => ["id", "salaryMonthly", "clubContractYearly", "monthlySpendingHabit", data.monthlySpendingHabit == "DA" && "abc"],
         amount: function({ salaryMonthly, clubContractYearly, monthlySpendingHabit }) {
           return (salaryMonthly + clubContractYearly) * (monthlySpendingHabit == "DA" ? 50 : 1);
         }
