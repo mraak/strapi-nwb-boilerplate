@@ -137,7 +137,7 @@ export const dohodek =  {
 
 export const izdatki =  {
   kontrola: {
-    label: "Svoj osebni proračun imam pod kontrolo, tako da vsak mesec zapravim manj kot zaslužim ...",
+    label: "Svoj osebni proračun imam pod kontrolo, tako da vsak mesec zapravim manj kot zaslužim.",
     helpText: "",
     required: true,
     type: "radio-list",
@@ -150,7 +150,7 @@ export const izdatki =  {
     value: "DA"
   },
   koristimLimit: {
-    label: "Ne koristim limita na kartici",
+    label: "Ne koristim limita na kartici.",
     helpText: "",
     required: true,
     type: "radio-list",
@@ -219,13 +219,13 @@ export const lastniskiIzdatki =  {
     props: {
       items: [
         { label: "Da", value: "DA" },
-        { label: "Da", value: "NE" }
+        { label: "Ne", value: "NE" }
       ]
     },
     value: "DA"
   },
   kreditZaNepremicnino_dodatek1: {
-    label: "*** dodatek 1",
+    label: "mesečni obrok",
     helpText: "",
     required: false,
     type: "range",
@@ -237,7 +237,7 @@ export const lastniskiIzdatki =  {
     value: 420
   },
   kreditZaNepremicnino_dodatek2: {
-    label: "*** dodatek 2",
+    label: "vrednost preostale glavnice",
     helpText: "",
     required: false,
     type: "range",
@@ -249,7 +249,7 @@ export const lastniskiIzdatki =  {
     value: 100000
   },
   kreditZaNepremicnino_dodatek3: {
-    label: "*** dodatek 3",
+    label: "preostala leta odplačevanja",
     helpText: "",
     required: false,
     type: "range",
@@ -274,7 +274,7 @@ export const lastniskiIzdatki =  {
     value: "LETNO"
   },
   vzdrzevanjeNepremicnine_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -299,7 +299,7 @@ export const lastniskiIzdatki =  {
     value: "DA"
   },
   najemnina_dodatek1: {
-    label: "*** dodatek 1",
+    label: "",
     helpText: "",
     required: false,
     type: "radio-list",
@@ -312,7 +312,7 @@ export const lastniskiIzdatki =  {
     value: "MESECNO"
   },
   najemnina_dodatek2: {
-    label: "*** dodatek 2",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -330,14 +330,14 @@ export const lastniskiIzdatki =  {
     type: "radio-list",
     props: {
       items: [
-        { label: "Mesečno", value: "MESECNO" },
-        { label: "Letno", value: "LETNO" }
+        { label: "Da", value: "DA" },
+        { label: "Ne", value: "NE" }
       ]
     },
-    value: "LETNO"
+    value: "DA"
   },
   kreditAvto_dodatek1: {
-    label: "*** dodatek 1",
+    label: "mesečni obrok",
     helpText: "",
     required: false,
     type: "range",
@@ -349,7 +349,7 @@ export const lastniskiIzdatki =  {
     value: 125
   },
   kreditAvto_dodatek2: {
-    label: "*** dodatek 2",
+    label: "vrednost preostale glavnice",
     helpText: "",
     required: false,
     type: "range",
@@ -361,7 +361,7 @@ export const lastniskiIzdatki =  {
     value: 6000
   },
   kreditAvto_dodatek3: {
-    label: "*** dodatek 3",
+    label: "preostala leta odplačevanja",
     helpText: "",
     required: false,
     type: "range",
@@ -386,7 +386,7 @@ export const lastniskiIzdatki =  {
     value: "LETNO"
   },
   vzdrzevanjeAvta_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -426,7 +426,7 @@ export const zivljenjskiIzdatki =  {
     value: "MESECNO"
   },
   zivljenjskiIzdatki_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -451,7 +451,7 @@ export const zivljenjskiIzdatki =  {
     value: "MESECNO"
   },
   zavarovanja_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -476,7 +476,7 @@ export const zivljenjskiIzdatki =  {
     value: "MESECNO"
   },
   ostaliIzdatki_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: false,
     type: "range",
@@ -531,13 +531,16 @@ export const pokojnina =  {
     value: ""
   },
   pomembno: {
-    label: "POMEMBNO",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za opozorilo ***<br><br><i>Zaposleni, ki se bo upokojil od leta 2015 dalje, bo prejemal pokojnino v višini samo <u>50% svoje neto plače ali manj.</u> Sami moramo torej zapolniti vrzel v višini vsaj 30% neto mesečnih dohodkov.<br><smaller>Vir: Študija Dolgoročni pomen 2. pokojninskega stebra, Ekonomska fakulteta v Ljubjani, marec 2010</smaller></i>"
+    type: "label_heading_italic",
+    value: "POMEMBNO"
+  },
+  pomembno2: {
+    type: "label_subheading_italic",
+    value: "Zaposleni, ki se bo upokojil od leta 2015 dalje, bo prejemal pokojnino v višini samo 50% svoje neto plače ali manj. Sami moramo torej zapolniti vrzel v višini vsaj 30% neto mesečnih dohodkov."
+  },
+  pomembno3: {
+    type: "cite",
+    value: "Vir: Študija Dolgoročni pomen 2. pokojninskega stebra, Ekonomska fakulteta v Ljubjani, marec 2010"
   }
 };
 
@@ -556,7 +559,7 @@ export const izdatkiVPokoju =  {
     value: "MESECNO"
   },
   nepremicninskiIzdatki_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: true,
     type: "range",
@@ -581,7 +584,7 @@ export const izdatkiVPokoju =  {
     value: "MESECNO"
   },
   zivljenjskiIzdatki_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: true,
     type: "range",
@@ -593,13 +596,16 @@ export const izdatkiVPokoju =  {
     value: 200
   },
   pomembno: {
-    label: "POMEMBNO",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za opozorilo ***<br><br><i>Strošek zdravljenja za moške in ženske po 65-em letu starosti je v Sloveniji v povprečju več kot 2.000€ letno in s starostjo raste.<br><smaller>Vir: Ocena Statističnega urada Republike Slovenije za projekcije AWG 2012</smaller></i>"
+    type: "label_heading_italic",
+    value: "POMEMBNO"
+  },
+  pomembno2: {
+    type: "label_subheading_italic",
+    value: "Strošek zdravljenja za moške in ženske po 65-em letu starosti je v Sloveniji v povprečju več kot 2.000€ letno in s starostjo raste."
+  },
+  pomembno3: {
+    type: "cite",
+    value: "Vir: Ocena Statističnega urada Republike Slovenije za projekcije AWG 2012"
   },
   potovanjaInZabava: {
     label: "Potovanja in zabava v pokoju",
@@ -615,7 +621,7 @@ export const izdatkiVPokoju =  {
     value: "MESECNO"
   },
   potovanjaInZabava_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: true,
     type: "range",
@@ -640,7 +646,7 @@ export const izdatkiVPokoju =  {
     value: "MESECNO"
   },
   ostaliIzdatki_dodatek: {
-    label: "*** dodatek",
+    label: "",
     helpText: "",
     required: true,
     type: "range",
@@ -694,13 +700,8 @@ export const obveznostiMedUpokojitvijo =  {
 
 export const pokojninskaRezerva =  {
   naslov: {
-    label: "(Naslov za naslednje 3 DDL): Dodatno pokojninsko zavarovanje (2. steber)",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Dodatno pokojninsko zavarovanje (2. steber)"
   },
   dodatnoZavarovanje_delodajalec: {
     label: "Znesek, ki ga plačuje delodajalec",
@@ -739,13 +740,8 @@ export const pokojninskaRezerva =  {
     value: 8000
   },
   naslov2: {
-    label: "(Naslov za naslednja 2 DDL): Trenutno mesečno varčevanje za pokojnino (3. steber)",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Trenutno mesečno varčevanje za pokojnino (3. steber)"
   },
   trenutnoMesecnoZavarovanje_mesec: {
     label: "Mesečni znesek",
@@ -772,13 +768,8 @@ export const pokojninskaRezerva =  {
     value: 19000
   },
   naslov3: {
-    label: "(Naslov za naslednji DDL): Enkratno investiranje za pokojnino",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Enkratno investiranje za pokojnino"
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
@@ -834,13 +825,16 @@ export const otrokovoIzobrazevanje =  {
     value: ""
   },
   pomembno: {
-    label: "POMEMBNO",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za opozorilo ***<br><br><i>Povprečni mesečni strošek za študij v Sloveniji je <u>565 evrov</u>.<br>Strošek študija za enega otroka v Sloveniji je tako 33.900 EUR (5-letni študij)<br><smaller>Vir: Študentska organizacija Slovenije, Euroštudent V, 2013</smaller></i>"
+    type: "label_heading_italic",
+    value: "POMEMBNO"
+  },
+  pomembno2: {
+    type: "label_subheading_italic",
+    value: "Povprečni mesečni strošek za študij v Sloveniji je 565 evrov. Strošek študija za enega otroka v Sloveniji je tako 33.900 EUR (5-letni študij)."
+  },
+  pomembno3: {
+    type: "cite",
+    value: "Vir: Študentska organizacija Slovenije, Euroštudent V, 2013"
   }
 };
 
@@ -872,8 +866,9 @@ export const otrok1 =  {
     required: false,
     type: "text",
     props: {
+      disabled: true
     },
-    value: "(FIXNO!) 33.900 EUR"
+    value: "33.900 EUR"
   },
   odstotekStroskov: {
     label: "% od vseh stroškov, ki jih nameravate plačati za študij otroka (%)",
@@ -888,13 +883,8 @@ export const otrok1 =  {
     value: 75
   },
   naslov: {
-    label: "(Naslov za naslednja 2 DDL): Trenutno mesečno varčevanje za otrokovo izobraževanje",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Trenutno mesečno varčevanje za otrokovo izobraževanje"
   },
   mesecnoVarcevanje_mesecno: {
     label: "Mesečni znesek",
@@ -921,13 +911,8 @@ export const otrok1 =  {
     value: 3400
   },
   naslov2: {
-    label: "(Naslov za naslednji DDL): Enkratno investiranje za otrokovo izobraževanje",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Enkratno investiranje za otrokovo izobraževanje"
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
@@ -945,13 +930,8 @@ export const otrok1 =  {
 
 export const zdravjeVPokoju =  {
   naslov: {
-    label: "",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za podnaslov *** <i><u>2.000 EUR</u> letno oziroma <u>167 EUR</u> mesečno v povprečju je neposreden izdatek oziroma izdatek iz žepa za zdravje in zdravljenje v pokoju.</i>"
+    type: "label_subheading_italic_margin",
+    value: "2.000 EUR letno oziroma 167 EUR mesečno v povprečju je neposreden izdatek oziroma izdatek iz žepa za zdravje in zdravljenje v pokoju."
   },
   varcujeteZaZdravje: {
     label: "Ali varčujete za zdravje in zdravljenje v pokoju?",
@@ -967,13 +947,8 @@ export const zdravjeVPokoju =  {
     value: ""
   },
   naslov2: {
-    label: "(Naslov za naslednja 2 DDL): Trenutno mesečno varčevanje za zdravje v pokoju",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Trenutno mesečno varčevanje za zdravje v pokoju"
   },
   varcevanjeZaOtroka_mesecno: {
     label: "Mesečni znesek",
@@ -1000,13 +975,8 @@ export const zdravjeVPokoju =  {
     value: 1000
   },
   naslov3: {
-    label: "(Naslov za naslednji DDL): Enkratno investiranje za zdravje v pokoju",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov ***"
+    type: "label_heading_normal",
+    value: "Enkratno investiranje za zdravje v pokoju"
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
@@ -1105,7 +1075,7 @@ export const zascitaZivljenja =  {
     type: "text",
     props: {
     },
-    value: "*** avtomatsko vrže kar je že gor napisal, če pa je lagal mora še 1x vpisati ***"
+    value: ""
   },
   steviloOtrok_dodatek: {
     label: "Starost otroka",
@@ -1183,13 +1153,12 @@ export const zascitaZivljenja =  {
 
 export const zascitaDelovneSposobnosti =  {
   naslov: {
-    label: "Zaščita v primeru invalidnosti in težjih bolezni",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov *** <i>Invalidska pokojnina se odmeri od pokojninske osnove, izračunane na enak način, kot za odmero starostne pokojnine (http://www.zpiz.si/). OPOZORILO: Od vključno delovne dobe do vključno izdatkiSkupaj mora biti že vse predizpolnjeno."
+    type: "label_heading_normal",
+    value: "Zaščita v primeru invalidnosti in težjih bolezni"
+  },
+  naslov2: {
+    type: "label_subheading_italic",
+    value: "Invalidska pokojnina se odmeri od pokojninske osnove, izračunane na enak način, kot za odmero starostne pokojnine (http://www.zpiz.si/)."
   },
   delovnaDoba: {
     label: "Delovna doba",
@@ -1374,13 +1343,12 @@ export const upravljanjeMojegaPremozenja =  {
 
 export const analizaStroskovInPregledProduktov =  {
   naslov: {
-    label: "VARČEVANJA",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov (VARČEVANJA); kar je tu naprej je podnaslov, fielda vseeno ne sme biti*** Trenutno mesečno varčevanje za pokojnino (3. steber)"
+    type: "label_heading_normal",
+    value: "VARČEVANJA"
+  },
+  naslov222: {
+    type: "label_heading_normal",
+    value: "Trenutno mesečno varčevanje za pokojnino (3. steber)"
   },
   steviloProduktov: {
     label: "Število produktov",
@@ -1389,7 +1357,7 @@ export const analizaStroskovInPregledProduktov =  {
     type: "text",
     props: {
     },
-    value: "*** max 15 ***"
+    value: "" // max 15
   },
   tipProdukta: {
     label: "Tip produkta (DDL: Klasično življenjsko zavarovanje; Naložbeno življenjsko zavarovanje; Investicijsko zavarovanje; Prostovoljno pokojninsko zavarovanje; Varčevanje v vzajemnih skladih; Varčevanje na banki)",
@@ -1425,13 +1393,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 5000
   },
   naslov2: {
-    label: "Zavarovanja na produktu",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** tega fielda ne sme biti, ker gre samo za naslov naslednjih 5 sliderjev ***"
+    type: "label_subheading_normal",
+    value: "Zavarovanja na produktu"
   },
   zavarovanjaNaProduktu_zivljenskoZavarovanje: {
     label: "Življenjsko zavarovanje",
@@ -1494,13 +1457,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 50000
   },
   naslov3: {
-    label: "Trenutno mesečno varčevanje za otrokovo izobraževanje",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** tega fielda ne sme biti, ker gre samo za naslov text inputa ***"
+    type: "label_heading_normal",
+    value: "Trenutno mesečno varčevanje za otrokovo izobraževanje"
   },
   steviloProduktov2: {
     label: "Število produktov",
@@ -1545,13 +1503,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 5000
   },
   naslov4: {
-    label: "Zavarovanja na produktu",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** tega fielda ne sme biti, ker gre samo za naslov naslednjih 5 sliderjev ***"
+    type: "label_subheading_normal",
+    value: "Zavarovanja na produktu"
   },
   zavarovanjaNaProduktu_zivljenskoZavarovanje2: {
     label: "Življenjsko zavarovanje",
@@ -1614,13 +1567,12 @@ export const analizaStroskovInPregledProduktov =  {
     value: 50000
   },
   naslov5: {
-    label: "INVESTIRANJE",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov (INVESTIRANJE); kar je tu naprej je podnaslov, fielda vseeno ne sme biti*** Enkratno investiranje za pokojnino"
+    type: "label_heading_normal",
+    value: "INVESTIRANJE"
+  },
+  naslov555: {
+    type: "label_heading_normal",
+    value: "Enkratno investiranje za pokojnino"
   },
   denarnaSredstva: {
     label: "Denarna sredstva",
@@ -1671,13 +1623,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 10000
   },
   naslov6: {
-    label: "",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov naslednjih 5 rangov *** Zavarovanja na produktu"
+    type: "label_subheading_normal",
+    value: "Zavarovanja na produktu"
   },
   zavarovanja1: {
     label: "Življenjsko zavarovanja",
@@ -1740,13 +1687,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 25
   },
   naslov7: {
-    label: "",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za podnaslov *** Enkratno investiranje za otrokovo izobraževanje"
+    type: "label_heading_normal",
+    value: "Enkratno investiranje za otrokovo izobraževanje"
   },
   denarnaSredstva2: {
     label: "Denarna sredstva",
@@ -1797,13 +1739,8 @@ export const analizaStroskovInPregledProduktov =  {
     value: 10000
   },
   naslov8: {
-    label: "",
-    helpText: "",
-    required: true,
-    type: "text",
-    props: {
-    },
-    value: "*** Tega fielda ne sme biti, saj gre samo za naslov naslednjih 5 rangov *** Zavarovanja na produktu"
+    type: "label_subheading_normal",
+    value: "Zavarovanja na produktu"
   },
   zavarovanja11: {
     label: "Življenjsko zavarovanja",

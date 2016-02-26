@@ -50,6 +50,24 @@ function renderElement({ type, props }, field) {
       ...field
     });
 
+  if(type == "label_heading_normal")
+    return createElement("label", {className: "bold"}, field.value);
+
+  if(type == "label_heading_italic")
+    return createElement("label", {className: "bold italic"}, field.value);
+
+  if(type == "label_subheading_normal")
+    return createElement("label", {className: "negative-base-margin"}, field.value);
+
+  if(type == "label_subheading_italic")
+    return createElement("label", {className: "italic negative-base-margin"}, field.value);
+
+  if(type == "label_subheading_italic_margin")
+    return createElement("label", {className: "italic"}, field.value);
+
+  if(type == "cite")
+    return createElement("label", {className: "italic small negative-base-margin",}, field.value);
+
   return createElement("input", {
     type: type || "text",
     ...props,
