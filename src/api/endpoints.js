@@ -140,8 +140,15 @@ export default {
     method: "post",
     path: "/api/auth/change-password",
     action: (action, dispatch) => {
-      if(action.status == 2)
+      if(action.status == 2) {
         dispatch(routeActions.replace("/"));
+
+        action = {
+          ..._.omit(action, "data"),
+          jwt: action.data.jwt,
+          data: action.data.user
+        };
+      }
 
       if(action.status == 3) {
         action.error = Object.assign({
