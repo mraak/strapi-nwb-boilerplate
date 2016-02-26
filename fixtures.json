@@ -1,5 +1,26 @@
 [
   {
+    "model": "user",
+    "items": [
+      {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@gmail.com",
+        "password": "$2a$10$v7.HIdbJusOrHtICVN94w.YN1vX9fQa72ojHIAkbnfUAEvxi2LxiW"
+      }
+    ]
+  },
+  {
+    "model": "role_users__user_roles",
+    "items": [
+      {
+        "id": 1,
+        "role_users": 1,
+        "user_roles": 1
+      }
+    ]
+  },
+  {
     "model": "page",
     "items": [
       {
@@ -28,6 +49,16 @@
         "published": true,
         "createdBy": 1,
         "updatedBy": 1
+      }
+    ]
+  },
+  {
+    "model": "page_contributors__user_pages",
+    "items": [
+      {
+        "id": 1,
+        "page_contributors": 1,
+        "user_pages": 1
       }
     ]
   }
