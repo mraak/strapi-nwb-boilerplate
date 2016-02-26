@@ -33,10 +33,9 @@ export default class IFVForm extends Component {
         title: "Osebni podatki",
         model: osebniPodatki,
         data: sections.data.osebniPodatki,
-        // fields: ["id", "ime", "starost", "delovnaDoba", "status", "steviloOtrok"]
         fieldsFunction: (data) => ["id", "ime", "starost", "delovnaDoba", "status", data.status == "POROCEN" && "steviloOtrok"],
         amount: function(data) {
-          return 1;
+          return "/";
         }
       },
       {
@@ -46,7 +45,7 @@ export default class IFVForm extends Component {
         data: sections.data.dohodek,
         fields: ["id", "placa", "pogodbaSKlubom", "sponzorstva", "nagrade", "dohodkiOdOddajeNepremicnin", "drugiDohodki"],
         amount: function(data) {
-          return 1;
+          return data.placa * 12 - data.pogodbaSKlubom + data.sponzorstva + data.nagrade + data.dohodkiOdOddajeNepremicnin * 12 + data.drugiDohodki;
         }
       },
       {
@@ -56,7 +55,7 @@ export default class IFVForm extends Component {
         data: sections.data.izdatki,
         fields: ["id", "kontrola", "koristimLimit", "vsiDolgoviPlacaniPravocasno", "zadolzenost", "rezerva"],
         amount: function(data) {
-          return 1;
+          return "/";
         }
       },
       {
@@ -64,8 +63,10 @@ export default class IFVForm extends Component {
         title: "Lastniški izdatki",
         model: lastniskiIzdatki,
         data: sections.data.lastniskiIzdatki,
-        fields: ["id", "kreditZaNepremicnino", "kreditZaNepremicnino_dodatek1", "kreditZaNepremicnino_dodatek2", "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine", "vzdrzevanjeNepremicnine_dodatek",
-        "najemnina", "najemnina_dodatek1", "najemnina_dodatek2", "kreditAvto", "kreditAvto_dodatek1", "kreditAvto_dodatek2", "kreditAvto_dodatek3", "vzdrzevanjeAvta", "vzdrzevanjeAvta_dodatek", "ostaliDolgovi"],
+        fieldsFunction: (data) => ["id", "kreditZaNepremicnino", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek1", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek2",
+        data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine", "vzdrzevanjeNepremicnine_dodatek", "najemnina",
+        data.najemnina == "DA" && "najemnina_dodatek1", data.najemnina == "DA" && "najemnina_dodatek2", "kreditAvto", data.kreditAvto == "DA" && "kreditAvto_dodatek1",
+        data.kreditAvto == "DA" && "kreditAvto_dodatek2", data.kreditAvto == "DA" && "kreditAvto_dodatek3", "vzdrzevanjeAvta", "vzdrzevanjeAvta_dodatek", "ostaliDolgovi"],
         amount: function(data) {
           return 1;
         }
@@ -75,9 +76,27 @@ export default class IFVForm extends Component {
         title: "Življenjski izdatki",
         model: zivljenjskiIzdatki,
         data: sections.data.zivljenjskiIzdatki,
-        fields: ["id", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "zavarovanja", "zavarovanja_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
+        fieldsFunction: (data) => ["id", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "zavarovanja", "zavarovanja_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
         amount: function(data) {
-          return 1;
+          var sum = 0;
+          if(data.zivljenjskiIzdatki == "MESECNO") {
+            sum += data.zivljenjskiIzdatki_dodatek * 12;
+            if(data.zavarovanja == "MESECNO") {
+              sum += data.zavarovanja_dodatek * 12;
+              if(data.ostaliIzdatki == "MESECNO") {
+                sum += data.ostaliIzdatki_dodatek * 12;
+              }
+              else
+                sum += data.ostaliIzdatki_dodatek;
+            }
+            else {
+              sum += data.zavarovanja_dodatek;
+            }
+          }
+          else {
+            sum += data.zivljenjskiIzdatki_dodatek;
+          }
+          return sum;
         }
       },
       {
@@ -85,18 +104,18 @@ export default class IFVForm extends Component {
         title: "Pokojnina",
         model: pokojnina,
         data: sections.data.pokojnina,
-        fields: ["id", "stLetDoUpokojitve", "pricakovanoStLetVPokoju", "dobraPot", "pomembno"],
+        fields: ["id", "stLetDoUpokojitve", "pricakovanoStLetVPokoju", "dobraPot", "pomembno", "pomembno2", "pomembno3"],
         amount: function(data) {
           return 1;
         }
       },
       {
         key: "izdatkiVPokoju",
-        title: "Izdatki v pokoju",
+        title: "Izdatki v pokoju (v današnjih evrih)",
         model: izdatkiVPokoju,
         data: sections.data.izdatkiVPokoju,
-        fields: ["id", "nepremicninskiIzdatki", "nepremicninskiIzdatki_dodatek", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "pomembno", "potovanjaInZabava",
-        "potovanjaInZabava_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
+        fieldsFunction: (data) => ["id", "nepremicninskiIzdatki", "nepremicninskiIzdatki_dodatek", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek",
+        "pomembno", "pomembno2", "pomembno3", "potovanjaInZabava", "potovanjaInZabava_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
         amount: function(data) {
           return 1;
         }
@@ -127,7 +146,8 @@ export default class IFVForm extends Component {
         title: "Sklad za otrokovo izobraževanje",
         model: otrokovoIzobrazevanje,
         data: sections.data.otrokovoIzobrazevanje,
-        fields: ["id", "varcevanjeZaOtrokovoIzobrazevanje", "varcevanjeZaOtrokovoIzobrazevanje_dodatek", "kolikoMoramPrivarcevati", "pomembno"],
+        fieldsFunction: (data) => ["id", "varcevanjeZaOtrokovoIzobrazevanje", data.varcevanjeZaOtrokovoIzobrazevanje == "DA" && "varcevanjeZaOtrokovoIzobrazevanje_dodatek", "kolikoMoramPrivarcevati",
+        "pomembno", "pomembno2", "pomembno3"],
         amount: function(data) {
           return 1;
         }
@@ -147,7 +167,8 @@ export default class IFVForm extends Component {
         title: "Zdravje in zdravljenje v pokoju",
         model: zdravjeVPokoju,
         data: sections.data.zdravjeVPokoju,
-        fields: ["id", "naslov", "varcujeteZaZdravje", "naslov2", "varcevanjeZaOtroka_mesecno", "varcevanjeZaOtroka_trenutno", "naslov3", "enkratnoInvestiranje"],
+        fieldsFunction: (data) => ["id", "naslov", "varcujeteZaZdravje", data.varcujeteZaZdravje == "DA" && "naslov2", data.varcujeteZaZdravje == "DA" &&"varcevanjeZaOtroka_mesecno",
+        data.varcujeteZaZdravje == "DA" && "varcevanjeZaOtroka_trenutno", data.varcujeteZaZdravje == "DA" && "naslov3", data.varcujeteZaZdravje == "DA" && "enkratnoInvestiranje"],
         amount: function(data) {
           return 1;
         }
@@ -157,7 +178,8 @@ export default class IFVForm extends Component {
         title: "Zaščita življenja",
         model: zascitaZivljenja,
         data: sections.data.zascitaZivljenja,
-        fields: ["id", "partnerOdvisen", "partnerOdvisen_dodatek1", "partnerOdvisen_dodatek2", "partnerOdvisen_dodatek3", "znesekDohodkaZaPartnerja", "dodatenDohodek", "steviloOtrok",
+        fieldsFunction: (data) => ["id", "partnerOdvisen", data.partnerOdvisen == "DA" && "partnerOdvisen_dodatek1", data.partnerOdvisen == "DA" && "partnerOdvisen_dodatek2",
+        data.partnerOdvisen == "DA" && "partnerOdvisen_dodatek3", "znesekDohodkaZaPartnerja", "dodatenDohodek", "steviloOtrok", data.steviloOtrok != "" &&
         "steviloOtrok_dodatek", "procentStroskovZaPlacati", "mesecniZnesekDohodka", "glavnicaDolgov", "zavarovanjaZivljenje", "zavarovanjaKrediti"],
         amount: function(data) {
           return 1;
@@ -168,7 +190,7 @@ export default class IFVForm extends Component {
         title: "Zaščita delovne sposobnosti",
         model: zascitaDelovneSposobnosti,
         data: sections.data.zascitaDelovneSposobnosti,
-        fields: ["id", "naslov", "delovnaDoba", "odstotekZaInvalidskoPokojnino", "invalidskaPokojnina", "lastniskiIzdatki", "zivljenjskiIzdatki", "izdatkiSkupaj", "vrednostZavarovanjInvalidnost", "vrednostZavarovanjBolezni"],
+        fieldsFunction: (data) => ["id", "naslov", "naslov2", "delovnaDoba", "odstotekZaInvalidskoPokojnino", "invalidskaPokojnina", "lastniskiIzdatki", "zivljenjskiIzdatki", "izdatkiSkupaj", "vrednostZavarovanjInvalidnost", "vrednostZavarovanjBolezni"],
         amount: function(data) {
           return 1;
         }
@@ -198,10 +220,10 @@ export default class IFVForm extends Component {
         title: "Analiza stroškov in pregled produktov",
         model: analizaStroskovInPregledProduktov,
         data: sections.data.analizaStroskovInPregledProduktov,
-        fields: ["id", "naslov", "steviloProduktov", "tipProdukta", "tipProdukta_mesecniZnesek", "tipProdukta_trenutnaVrednost", "naslov2", "zavarovanjaNaProduktu_zivljenskoZavarovanje", "zavarovanjaNaProduktu_dodatnaZavarovanja",
+        fields: ["id", "naslov", "naslov222", "steviloProduktov", "tipProdukta", "tipProdukta_mesecniZnesek", "tipProdukta_trenutnaVrednost", "naslov2", "zavarovanjaNaProduktu_zivljenskoZavarovanje", "zavarovanjaNaProduktu_dodatnaZavarovanja",
         "zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje", "zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni", "zavarovanjaNaProduktu_strosekDodatnihZavarovanj", "naslov3", "steviloProduktov2",
         "tipProdukta2", "tipProdukta_mesecniZnesek2", "tipProdukta_trenutnaVrednost2", "naslov4", "zavarovanjaNaProduktu_zivljenskoZavarovanje2", "zavarovanjaNaProduktu_dodatnaZavarovanja2",
-        "zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2", "zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2", "zavarovanjaNaProduktu_strosekDodatnihZavarovanj2", "naslov5", "denarnaSredstva", "vzajemniSkladi",
+        "zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2", "zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2", "zavarovanjaNaProduktu_strosekDodatnihZavarovanj2", "naslov5", "naslov555", "denarnaSredstva", "vzajemniSkladi",
         "delnice", "enkratniNalozbeniProdukti", "naslov6", "zavarovanja1", "zavarovanja2", "zavarovanja3", "zavarovanja4", "zavarovanja5", "naslov7", "denarnaSredstva2", "vzajemniSkladi2", "delnice2",
         "enkratniNalozbeniProdukti2", "naslov8", "zavarovanja11", "zavarovanja22", "zavarovanja33", "zavarovanja44", "zavarovanja55"],
         amount: function(data) {
@@ -224,12 +246,27 @@ export default class IFVForm extends Component {
       <div styleName="root">
         <row className="centered">
           <column cols="3">
-            <fieldset>
+            <fieldset className="fixed">
               <legend>Kategorije</legend>
+              <section>
+                <a href="#">OSEBNI PODATKI</a>
+            </section>
+            <section>
+                <a href="#">moji DOHODKI IN IZDATKI</a>
+            </section>
+            <section>
+                <a href="#">moja PRIHODNOST</a>
+            </section>
+            <section>
+                <a href="#">moja TVEGANJA</a>
+            </section>
+            <section>
+                <a href="#">moje PREMOŽENJE</a>
+            </section>
             </fieldset>
           </column>
 
-          <column cols="4">
+          <column cols="5">
             {forms.map(props => (
               <DynamicForm
                 form={props.key}
