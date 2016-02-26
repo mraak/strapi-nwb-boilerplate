@@ -98,6 +98,7 @@ var prepare_model_job = function(model_def)
 var prepare_model_instance_job = function(model, data)
 {
 	return function(next) {
+		// return model.define()
 		return (function() {
 			if(data.id) {
 				return model.update(data.id, data)

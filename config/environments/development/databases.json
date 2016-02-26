@@ -20,11 +20,13 @@
       },
       "pg": {
         "adapter": "postgresql",
-        "host": "localhost",
-        "port": 5432,
-        "user": "Miran",
-        "password": "",
-        "database": "strapi-nwb"
+        "connection": {
+          "host": "localhost",
+          "port": 5432,
+          "user": "Miran",
+          "password": "",
+          "database": "strapi-nwb"
+        }
       }
     }
   }

@@ -20,11 +20,13 @@
       },
       "pg": {
         "adapter": "postgresql",
-        "host": "45.33.15.118",
-        "port": 5432,
-        "user": "test1",
-        "password": "t",
-        "database": "test1"
+        "connection": {
+          "host": "localhost",
+          "port": 5432,
+          "user": "test1",
+          "password": "t",
+          "database": "test1"
+        }
       }
     }
   }
