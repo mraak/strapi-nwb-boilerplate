@@ -2,7 +2,7 @@
   "orm": {
     "adapters": {
       "disk": "sails-disk",
-      "postgresql": "sails-postgresql"
+      "postgresql": "waterline-postgresql"
     },
     "defaultConnection": "default",
     "connections": {
