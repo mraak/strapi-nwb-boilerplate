@@ -7,6 +7,7 @@
     "build": "nwb build",
     "clean": "nwb clean",
     "start": "cross-env NODE_ENV=development node server.js",
+    "production": "cross-env NODE_ENV=production node server.js",
     "nodemon": "cross-env NODE_ENV=development nodemon server.js",
     "test": "nwb test"
   },
@@ -57,13 +58,12 @@
     "redux-thunk": "^1.0.3",
     "request": "^2.69.0",
     "sails-disk": "^0.10.9",
-    "sails-postgresql": "^0.11.2",
     "socket.io": "^1.4.5",
     "strapi": "^1.5.4",
     "tcomb-form": "^0.8.1",
     "urijs": "^1.17.0",
     "waterline": "^0.11.0",
-    "waterline-fixtures": "^0.2.3"
+    "waterline-postgresql": "^0.13.4"
   },
   "devDependencies": {
     "cross-env": "^1.0.7",
