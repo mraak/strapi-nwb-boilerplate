@@ -22,9 +22,9 @@
         "adapter": "postgresql",
         "host": "localhost",
         "port": 5432,
-        "user": "Miran",
-        "password": "",
-        "database": "strapi-nwb"
+        "user": "test1",
+        "password": "t",
+        "database": "test1"
       }
     }
   }
