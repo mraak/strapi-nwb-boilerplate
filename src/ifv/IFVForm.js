@@ -249,19 +249,19 @@ export default class IFVForm extends Component {
             <fieldset className="fixed">
               <legend>Kategorije</legend>
               <section>
-                <a href="#">OSEBNI PODATKI</a>
+                <Link to="/ifv#osebniPodatki">OSEBNI PODATKI</Link>
             </section>
             <section>
-                <a href="#">moji DOHODKI IN IZDATKI</a>
+                <Link to="/ifv#dohodkiInIzdatki">moji DOHODKI IN IZDATKI</Link>
             </section>
             <section>
-                <a href="#">moja PRIHODNOST</a>
+                <Link to="/ifv#prihodnost">moja PRIHODNOST</Link>
             </section>
             <section>
-                <a href="#">moja TVEGANJA</a>
+                <Link to="/ifv#tveganja">moja TVEGANJA</Link>
             </section>
             <section>
-                <a href="#">moje PREMOŽENJE</a>
+                <Link to="/ifv#premozenje">moje PREMOŽENJE</Link>
             </section>
             </fieldset>
           </column>

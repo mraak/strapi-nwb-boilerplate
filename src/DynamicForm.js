@@ -51,12 +51,14 @@ function renderElement({ type, props }, field) {
       ...field
     });
 
-  if(type == "select")
-    return createElement(Select, {
-      ...props,
-      value: field.value//,
-      // onChange: field.onChange
-    });
+  // if(type == "select") {
+  //   return createElement(Select, {
+	// 		disabled: false,
+	// 		clearable: true,
+  //     ...props,
+  //     ...field
+  //   });
+  // }
 
   if(type == "label_heading_normal")
     return createElement("label", {className: "bold"}, field.value);

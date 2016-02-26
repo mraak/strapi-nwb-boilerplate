@@ -1,5 +1,21 @@
 /*************** OSEBNI PODATKI ***************/
 export const osebniPodatki =  {
+  // ddl: {
+  //   label: "DDL",
+  //   name: "places",
+  //   type: "radio-list",
+  //   options: [
+  //     { value: 'australian-capital-territory', label: 'Australian Capital Territory' },
+  //   	{ value: 'new-south-wales', label: 'New South Wales' },
+  //   	{ value: 'victoria', label: 'Victoria' },
+  //   	{ value: 'queensland', label: 'Queensland' },
+  //   	{ value: 'western-australia', label: 'Western Australia' },
+  //   	{ value: 'south-australia', label: 'South Australia' },
+  //   	{ value: 'tasmania', label: 'Tasmania' },
+  //   	{ value: 'northern-territory', label: 'Northern Territory'  }
+  //   ],
+  //   value: "new-south-wales"
+  // },
   ime: {
     label: "Ime",
     helpText: "",
@@ -1360,13 +1376,21 @@ export const analizaStroskovInPregledProduktov =  {
     value: "" // max 15
   },
   tipProdukta: {
-    label: "Tip produkta (DDL: Klasično življenjsko zavarovanje; Naložbeno življenjsko zavarovanje; Investicijsko zavarovanje; Prostovoljno pokojninsko zavarovanje; Varčevanje v vzajemnih skladih; Varčevanje na banki)",
+    label: "Tip produkta",
     helpText: "",
     required: true,
-    type: "text",
+    type: "radio-list",
     props: {
+      items: [
+        { label: "Klasično življenjsko zavarovanje", value: "1" },
+        { label: "Naložbeno življenjsko zavarovanje", value: "2" },
+        { label: "Investicijsko zavarovanje", value: "3" },
+        { label: "Prostovoljno pokojninsko zavarovanje", value: "4" },
+        { label: "Varčevanje v vzajemnih skladih", value: "5" },
+        { label: "Varčevanje na banki", value: "6" }
+      ]
     },
-    value: "DDL"
+    value: ""
   },
   tipProdukta_mesecniZnesek: {
     label: "Mesečni znesek",
@@ -1470,13 +1494,21 @@ export const analizaStroskovInPregledProduktov =  {
     value: ""
   },
   tipProdukta2: {
-    label: "Tip produkta (DDL: Klasično življenjsko zavarovanje; Naložbeno življenjsko zavarovanje; Investicijsko zavarovanje; Prostovoljno pokojninsko zavarovanje; Varčevanje v vzajemnih skladih; Varčevanje na banki)",
+    label: "Tip produkta",
     helpText: "",
     required: true,
-    type: "text",
+    type: "radio-list",
     props: {
+      items: [
+        { label: "Klasično življenjsko zavarovanje", value: "1" },
+        { label: "Naložbeno življenjsko zavarovanje", value: "2" },
+        { label: "Investicijsko zavarovanje", value: "3" },
+        { label: "Prostovoljno pokojninsko zavarovanje", value: "4" },
+        { label: "Varčevanje v vzajemnih skladih", value: "5" },
+        { label: "Varčevanje na banki", value: "6" }
+      ]
     },
-    value: "DDL"
+    value: ""
   },
   tipProdukta_mesecniZnesek2: {
     label: "Mesečni znesek",
