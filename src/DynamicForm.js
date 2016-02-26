@@ -10,6 +10,7 @@ import RadioGroup from 'react-radio';
 import DatePicker from 'react-date-picker';
 import moment from "moment";
 import Slider from 'rc-slider';
+import Select from 'react-select';
 import R from "ramda";
 import pureRender from "react-purerender";
 
@@ -48,6 +49,13 @@ function renderElement({ type, props }, field) {
       name: field.name,
       ...props,
       ...field
+    });
+
+  if(type == "select")
+    return createElement(Select, {
+      ...props,
+      value: field.value//,
+      // onChange: field.onChange
     });
 
   if(type == "label_heading_normal")
