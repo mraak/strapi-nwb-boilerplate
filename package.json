@@ -7,6 +7,7 @@
     "build": "nwb build",
     "clean": "nwb clean",
     "start": "cross-env NODE_ENV=development node server.js",
+    "production": "cross-env NODE_ENV=production node server.js",
     "nodemon": "cross-env NODE_ENV=development nodemon server.js",
     "test": "nwb test"
   },
