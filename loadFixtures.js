@@ -1,3 +1,4 @@
+var _ = require("lodash");
 var async = require('async');
 
 
@@ -67,7 +68,7 @@ var prepare_model_job = function(model_def)
 			var
 				name  = model_def.model.toLowerCase(),
 				items = model_def.items,
-				jobs  = [],
+				jobs  = [defineCollections(collections)],
 				model;
 
 			if (typeof collections[name] == 'object') {
@@ -86,6 +87,29 @@ var prepare_model_job = function(model_def)
 };
 
 
+function defineCollections(collections) {
+	return function(next) {
+		var jobs = _.map(collections, function(collection, name) {
+			return function(next) {
+				var self = collection.adapter;
+
+				var connName = self.dictionary.define;
+			  var adapter = self.connections[connName]._adapter;
+				var schema = self.query._schema.schema;
+
+				adapter.define(connName, self.collection, schema, next);
+			};
+		});
+
+		async.parallel(jobs, function(err, result) {
+			if(err)
+				throw err;
+
+			next(err);
+		});
+	};
+};
+
 /**
  * Create model instance job for async that runs for individual data rows. If id
  * is passed, check db for existence and update/create record. If not, data is
@@ -98,32 +122,24 @@ var prepare_model_job = function(model_def)
 var prepare_model_instance_job = function(model, data)
 {
 	return function(next) {
-		var self = model.adapter;
+		(function() {
+			if(data.id) {
+				return model.update(data.id, data)
+				.then(function(response) {
+					if(!response.length)
+						return model.create(data);
 
-		var connName = self.dictionary.define;
-	  var adapter = self.connections[connName]._adapter;
-		var schema = self.query._schema.schema;
+					return response[0];
+				});
+			}
 
-		adapter.define(connName, self.collection, schema, function() {
-			(function() {
-				if(data.id) {
-					return model.update(data.id, data)
-					.then(function(response) {
-						if(!response.length)
-							return model.create(data);
-
-						return response[0];
-					});
-				}
-
-				return model.create(data);
-			})()
-			.then(function(data) {
-				return next(null, data);
-			})
-			.catch(function(error) {
-				return next(error, null);
-			});
+			return model.create(data);
+		})()
+		.then(function(data) {
+			return next(null, data);
+		})
+		.catch(function(error) {
+			return next(error, null);
 		});
 	};
 };
