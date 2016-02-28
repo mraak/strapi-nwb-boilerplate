@@ -160,7 +160,7 @@ export const izdatki =  {
     props: {
       items: [
         { label: "Da", value: "DA" },
-        { label: "Da", value: "NE" }
+        { label: "Ne", value: "NE" }
       ]
     },
     value: "DA"
@@ -173,7 +173,7 @@ export const izdatki =  {
     props: {
       items: [
         { label: "Da", value: "DA" },
-        { label: "Da", value: "NE" }
+        { label: "Ne", value: "NE" }
       ]
     },
     value: "DA"
