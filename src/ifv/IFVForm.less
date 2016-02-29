@@ -1,16 +1,7 @@
 @import (reference) '../kube/kube.less';
 
-:local .root {
-  & > row {
-    max-width: 100%;
-    & > column > fieldset {
-      position: relative;
-    }
-  }
-
-  form button {
-    padding: 0 5%;
-  }
+:local .fixed-column {
+  .col-fixed(400px);
 }
 
 .forms {

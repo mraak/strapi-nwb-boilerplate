@@ -6,6 +6,7 @@ import { formatPattern } from 'react-router/lib/PatternUtils';
 // import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { propTypes, contextTypes } from 'react-props-decorators';
+import Sticky from 'react-sticky';
 
 import { Heading } from "../elements";
 
@@ -64,8 +65,11 @@ export default class Layout extends Component {
 
     return (
       <div className="layout">
-        <Header breadcrumbs={breadcrumbs} children={children}/>
-        <Header breadcrumbs={breadcrumbs} children={children} classes={{fixed: true}}/>
+        <div className="sticky-header">
+          <Sticky stickyContainerClass="sticky-header">
+            <Header breadcrumbs={breadcrumbs} children={children}/>
+          </Sticky>
+        </div>
 
         {/*<Helmet title={title} titleTemplate="Blog - %s"/>*/}
 
