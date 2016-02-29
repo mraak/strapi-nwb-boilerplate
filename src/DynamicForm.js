@@ -127,7 +127,7 @@ export default class DynamicForm extends Component {
         {error && <div className="alert alert-error">{error}</div>}
 
         <fieldset>
-          {title && <legend>{title}</legend>}
+          {title && <h4 className="sectionTitle">{title}</h4>}
 
           {fieldKeys.filter(key => !!model[key]).map(key => {
             let element = model[key];

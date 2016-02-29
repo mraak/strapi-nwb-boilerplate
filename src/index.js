@@ -108,3 +108,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+import './theme.less';

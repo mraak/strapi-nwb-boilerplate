@@ -1,5 +1,6 @@
 import React, { Component, PropTypes, createElement } from 'react';
 import { Link } from 'react-router';
+import Sticky from 'react-sticky';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { propTypes } from 'react-props-decorators';
@@ -242,31 +243,35 @@ export default class IFVForm extends Component {
       }
     ];
 
+
     return (
       <div styleName="root">
         <row className="centered">
           <column cols="3">
-            <fieldset className="fixed">
-              <legend>Kategorije</legend>
+          <div className="sticky-container">
+          <Sticky>
+            <fieldset className="fixed white">
               <section>
-                <Link to="/ifv#osebniPodatki">OSEBNI PODATKI</Link>
-            </section>
-            <section>
-                <Link to="/ifv#dohodkiInIzdatki">moji DOHODKI IN IZDATKI</Link>
-            </section>
-            <section>
-                <Link to="/ifv#prihodnost">moja PRIHODNOST</Link>
-            </section>
-            <section>
-                <Link to="/ifv#tveganja">moja TVEGANJA</Link>
-            </section>
-            <section>
-                <Link to="/ifv#premozenje">moje PREMOŽENJE</Link>
-            </section>
+                <Link onlyActiveOnIndex="true" activeClassName="selected" to="/ifv#osebniPodatki">OSEBNI PODATKI</Link>
+              </section>
+              <section>
+                <Link onlyActiveOnIndex="true" activeClassName="selected" to="/ifv#dohodkiInIzdatki">moji DOHODKI IN IZDATKI</Link>
+              </section>
+              <section>
+                <Link onlyActiveOnIndex="true" activeClassName="selected" to="/ifv#prihodnost">moja PRIHODNOST</Link>
+              </section>
+              <section>
+                <Link onlyActiveOnIndex="true" activeClassName="selected" to="/ifv#tveganja">moja TVEGANJA</Link>
+              </section>
+              <section>
+                <Link onlyActiveOnIndex="true" activeClassName="selected" to="/ifv#premozenje">moje PREMOŽENJE</Link>
+              </section>
             </fieldset>
+            </Sticky>
+            </div>
           </column>
 
-          <column cols="5">
+          <column cols="5" className="white">
             {forms.map(props => (
               <DynamicForm
                 form={props.key}
@@ -276,9 +281,9 @@ export default class IFVForm extends Component {
             ))}
           </column>
 
-          <column cols="5">
+          <column cols="4" className="white">
             <fieldset>
-              <legend>Izračun</legend>
+              <h4 className="sectionTitle">Izračun</h4>
 
               <table className="table-bordered">
                 <thead>
