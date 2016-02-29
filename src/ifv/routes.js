@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 
 import IFVView from "./IFVView";
 import IFVForm from "./IFVForm";
@@ -206,6 +206,7 @@ function premozenje() {
 }
 
 export default [
+  <Redirect from="/ifv" to="/ifv/osebni-podatki"/>,
   <Route name="Indeks finančne varnosti" path="/ifv" component={IFVView}>
     <Route name="OSEBNI PODATKI" path="osebni-podatki" component={IFVForm} forms={osebniPodatki}/>
     <Route name="moji DOHODKI IN IZDATKI" path="dohodki-in-izdatki" component={IFVForm} forms={dohodkiInIzdatki}/>

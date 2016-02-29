@@ -7,20 +7,25 @@ import { formatPattern } from 'react-router/lib/PatternUtils';
 import { connect } from 'react-redux';
 import { propTypes, contextTypes } from 'react-props-decorators';
 import Sticky from 'react-sticky';
+import _ from "lodash";
 
 import { Heading } from "../elements";
 
 import Header from "./header";
 
-function buildBreadcrumbs([ root, current ], params, titles) {
+function buildPath(routes, i) {
+  return _.map(routes.slice(0, i + 1), "path").join("/");
+}
+
+function buildBreadcrumbs([ root, ...routes ], params, titles) {
   var list = [ { name: root.indexRoute.name, path: root.path } ];
 
-  if(root.indexRoute === current)
+  if(routes.length == 1 && root.indexRoute === routes[0])
     return list;
 
   return [
     ...list,
-    { name: current.name || titles[current.nameKey] || "...", path: formatPattern(current.path, params) }
+    ...routes.map((route, i) => ({ name: route.name || titles[route.nameKey] || "...", path: formatPattern(buildPath(routes, i), params) }))
   ];
 }
 

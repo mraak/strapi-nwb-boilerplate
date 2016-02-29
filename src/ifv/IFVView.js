@@ -25,7 +25,7 @@ export default class IFVView extends Component {
               <Sticky stickyContainerClass="sticky-sidebar">
                 {/* TODO: Use ul */}
                 <fieldset className="fixed white">
-                {_.map(current.childRoutes, ({ name, path }) => <section><Link activeClassName="selected" to={"/ifv/" + path}>{name}</Link></section>)}
+                {_.map(current.childRoutes, ({ name, path }) => <section><Link activeClassName="selected" to={current.path + "/" + path}>{name}</Link></section>)}
                 </fieldset>
               </Sticky>
             </div>

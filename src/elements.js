@@ -29,7 +29,7 @@ export class HeaderLink extends Component {
     var element = index ? IndexLink : Link;
 
     return (
-      <li>{!!path && router.isActive(path, index)
+      <li>{!!path && router.isActive(path, true)
         ? name
         : createElement(element, {
             className,
