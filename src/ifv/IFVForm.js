@@ -13,6 +13,9 @@ import DynamicForm from "../DynamicForm";
 import actions from "./actions";
 import * as models from "./IFVFormModel";
 
+import $ from "jquery";
+import Sticky from "jquery-sticky";
+
 @waitFor(({ api: { sections } }) => [ sections.data ])
 @connect(state => state, actions)
 @propTypes({
@@ -21,6 +24,12 @@ import * as models from "./IFVFormModel";
 @css(require("./IFVForm.less"), { allowMultiple: true })
 // @pureRender
 export default class IFVForm extends Component {
+  componentDidMount() {
+    $("fieldset").sticky({topSpacing:0});
+  }
+  componentWillUnmount() {
+    $("fieldset").unstick();
+  }
   render() {
     const { api: { sections }, route, saveSection } = this.props;
     const formData = this.props.form;

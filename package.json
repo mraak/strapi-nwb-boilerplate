@@ -26,6 +26,8 @@
     "history": "^2.0.0",
     "install": "^0.4.4",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^2.2.1",
+    "jquery-sticky": "^1.0.3",
     "jsonwebtoken": "^5.7.0",
     "koa-connect": "^1.0.0",
     "koa-static": "^2.0.0",

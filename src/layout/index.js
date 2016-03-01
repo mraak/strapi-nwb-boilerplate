@@ -70,11 +70,7 @@ export default class Layout extends Component {
 
     return (
       <div className="layout">
-        <div className="sticky-header">
-          <Sticky stickyContainerClass="sticky-header">
-            <Header breadcrumbs={breadcrumbs} children={children}/>
-          </Sticky>
-        </div>
+        <Header breadcrumbs={breadcrumbs} children={children}/>
 
         {/*<Helmet title={title} titleTemplate="Blog - %s"/>*/}
 

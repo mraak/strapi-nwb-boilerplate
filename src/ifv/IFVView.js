@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import pureRender from "react-purerender";
 import css from 'react-css-modules';
-import Sticky from 'react-sticky';
 
 import { authenticated } from "../decorators";
 
