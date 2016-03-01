@@ -20,15 +20,11 @@ export default class IFVView extends Component {
     return (
       <div styleName="root">
         <row className="centered">
-          <column styleName="fixed-column">
-            <div className="sticky-sidebar">
-              <Sticky stickyContainerClass="sticky-sidebar">
-                {/* TODO: Use ul */}
-                <fieldset className="fixed white">
-                {_.map(current.childRoutes, ({ name, path }) => <section><Link activeClassName="selected" to={current.path + "/" + path}>{name}</Link></section>)}
-                </fieldset>
-              </Sticky>
-            </div>
+          <column cols="3" styleName="fixed-column">
+            {/* TODO: Use ul */}
+            <fieldset className="fixed white">
+            {_.map(current.childRoutes, ({ name, path }) => <section><Link activeClassName="selected" to={current.path + "/" + path}>{name}</Link></section>)}
+            </fieldset>
           </column>
 
           <column cols="12">
