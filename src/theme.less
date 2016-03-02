@@ -1,3 +1,5 @@
+@import (reference) './kube/kube.less';
+
 body {
   background-color: #E6E7E8;
 }
@@ -57,9 +59,6 @@ fieldset {
   section a {
     width: 100%;
   }
-  &.white {
-    padding: 0px;
-  }
 }
 
 section > label > span {  // Questions
@@ -106,4 +105,19 @@ div > label span {  // Radio buttons text
 
 .rc-tooltip, .rc-slider {
   z-index: 0 !important;
+}
+
+ul.fixed {
+  list-style-type: none;
+  margin: 0px;
+}
+
+@media (max-width: @breakpoint-small) {
+  .sticky {
+    z-index: initial !important;
+    position: initial !important;
+    top: initial !important;
+    bottom: initial !important;
+    margin-left: initial !important;
+  }
 }

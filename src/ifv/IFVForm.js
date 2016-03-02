@@ -14,7 +14,7 @@ import actions from "./actions";
 import * as models from "./IFVFormModel";
 
 import $ from "jquery";
-import Sticky from "jquery-sticky";
+import scrollToFixed from "../scrollToFixed";
 
 @waitFor(({ api: { sections } }) => [ sections.data ])
 @connect(state => state, actions)
@@ -25,10 +25,12 @@ import Sticky from "jquery-sticky";
 // @pureRender
 export default class IFVForm extends Component {
   componentDidMount() {
-    $("fieldset").sticky({topSpacing:0});
+    $(".sticky").scrollToFixed({
+      marginTop: $('.header').outerHeight(true)
+    });
   }
   componentWillUnmount() {
-    $("fieldset").unstick();
+    //$("fieldset").unstick();
   }
   render() {
     const { api: { sections }, route, saveSection } = this.props;
@@ -53,8 +55,8 @@ export default class IFVForm extends Component {
           ))}
         </column>
 
-        <column styleName="fixed-column" className="white">
-          <fieldset>
+        <column styleName="fixed-column">
+          <fieldset className="fixed white sticky">
             <h4 className="sectionTitle">Izračun</h4>
 
             <table className="table-bordered">

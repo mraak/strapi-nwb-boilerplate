@@ -71,6 +71,7 @@ export default class Layout extends Component {
     return (
       <div className="layout">
         <Header breadcrumbs={breadcrumbs} children={children}/>
+        <Header breadcrumbs={breadcrumbs} children={children} classes={{fixed: true}} />
 
         {/*<Helmet title={title} titleTemplate="Blog - %s"/>*/}
 

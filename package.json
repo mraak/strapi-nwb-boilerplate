@@ -62,6 +62,7 @@
     "request": "^2.69.0",
     "sails-disk": "^0.10.9",
     "sails-postgresql": "^0.11.3",
+    "scrolltofixed": "^1.0.6",
     "socket.io": "^1.4.5",
     "strapi": "^1.5.4",
     "tcomb-form": "^0.8.1",
