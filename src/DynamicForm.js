@@ -11,8 +11,10 @@ import DatePicker from 'react-date-picker';
 import moment from "moment";
 import Slider from 'rc-slider';
 import Select from 'react-select';
+import NoUISlider from 'react-nouislider';
 import R from "ramda";
 import pureRender from "react-purerender";
+import wNumb from "wnumb";
 
 const validate = (values, {model, fields}) => {
   const errors = {};
@@ -22,8 +24,36 @@ const validate = (values, {model, fields}) => {
   });
 
   return errors;
-
 };
+
+function formatInputValue(currency, val) {
+  if(!val)
+    val = 0;
+
+  if(!currency)
+    return Math.round(val);
+
+  var num = Math.round(val).toString();
+
+  if(num.length < 4)
+    return num + " €";
+  else if(num.length == 4)
+    return num.substring(0, 1) + "," + num.substring(1) + " €";
+  else if(num.length == 5)
+    return num.substring(0, 2) + "," + num.substring(2) + " €";
+  else if(num.length == 6)
+    return num.substring(0, 3) + "," + num.substring(3) + " €";
+  else if(num.length == 7)
+    return num.substring(0, 1) + "," + num.substring(1, 4) + "," + num.substring(4) + " €";
+  else if(num.length == 8)
+    return num.substring(0, 2) + "," + num.substring(2, 5) + "," + num.substring(5) + " €";
+}
+
+function onSliderChange(field) {
+  return function(value) {
+    return field.onChange(value[0]);
+  }
+}
 
 function showErrors(array) {
   if(!array)
@@ -59,6 +89,34 @@ function renderElement({ type, props }, field) {
   //     ...field
   //   });
   // }
+
+  if(type == "slider") {
+    return (
+      <row>
+      <column cols="10">
+        {createElement(NoUISlider, {
+          format: {
+            to: function(value) {
+              return value;
+            },
+            from: function(value) {
+              return value;
+            }
+          },
+          ...props,
+          start: [field.value || 0],
+          onChange: onSliderChange(field),
+          onSlide: onSliderChange(field)
+        })}
+      </column>
+
+      <column cols="2">
+        <input type='text' disabled value={formatInputValue(props.currency, field.value)} />
+      </column>
+      </row>
+   )
+  }
+
 
   if(type == "label_heading_normal")
     return createElement("label", {className: "bold"}, field.value);

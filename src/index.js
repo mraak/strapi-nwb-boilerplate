@@ -109,4 +109,5 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
+import './nouislider.css';
 import './theme.less';

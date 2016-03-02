@@ -38,10 +38,12 @@ function dohodkiInIzdatki() {
     {
       key: "lastniskiIzdatki",
       title: "Lastniški izdatki",
-      fieldsFunction: (data) => ["id", "kreditZaNepremicnino", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek1", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek2",
-      data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine", "vzdrzevanjeNepremicnine_dodatek", "najemnina",
-      data.najemnina == "DA" && "najemnina_dodatek1", data.najemnina == "DA" && "najemnina_dodatek2", "kreditAvto", data.kreditAvto == "DA" && "kreditAvto_dodatek1",
-      data.kreditAvto == "DA" && "kreditAvto_dodatek2", data.kreditAvto == "DA" && "kreditAvto_dodatek3", "vzdrzevanjeAvta", "vzdrzevanjeAvta_dodatek", "ostaliDolgovi"],
+      fieldsFunction: (data) => ["id", "kreditZaNepremicnino", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek1",
+      data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek2", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine",
+      "vzdrzevanjeNepremicnine_dodatek", "najemnina", data.najemnina == "DA" && "najemnina_dodatek1", data.najemnina_dodatek1 == "MESECNO" && "najemnina_dodatek2",
+      data.najemnina_dodatek1 == "LETNO" && "najemnina_dodatek3", "kreditAvto", data.kreditAvto == "DA" && "kreditAvto_dodatek1", data.kreditAvto == "DA" && "kreditAvto_dodatek2",
+      data.kreditAvto == "DA" && "kreditAvto_dodatek3", "vzdrzevanjeAvta", data.vzdrzevanjeAvta == "MESECNO" && "vzdrzevanjeAvta_dodatek_mesecno",
+      data.vzdrzevanjeAvta == "LETNO" && "vzdrzevanjeAvta_dodatek_letno", "ostaliDolgovi"],
       amount: function(data) {
         return 1;
       }
@@ -49,7 +51,10 @@ function dohodkiInIzdatki() {
     {
       key: "zivljenjskiIzdatki",
       title: "Življenjski izdatki",
-      fieldsFunction: (data) => ["id", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek", "zavarovanja", "zavarovanja_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
+      fieldsFunction: (data) => ["id", "zivljenjskiIzdatki", data.zivljenjskiIzdatki == "MESECNO" && "zivljenjskiIzdatki_dodatek_mesecno",
+      data.zivljenjskiIzdatki == "LETNO" && "zivljenjskiIzdatki_dodatek_letno", "zavarovanja", data.zavarovanja == "MESECNO" && "zavarovanja_dodatek_mesecno",
+      data.zavarovanja == "LETNO" && "zavarovanja_dodatek_letno", "ostaliIzdatki", data.ostaliIzdatki == "MESECNO" && "ostaliIzdatki_dodatek_mesecno",
+      data.ostaliIzdatki == "LETNO" && "ostaliIzdatki_dodatek_letno"],
       amount: function(data) {
         var sum = 0;
         if(data.zivljenjskiIzdatki == "MESECNO") {

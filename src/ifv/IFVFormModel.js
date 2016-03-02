@@ -27,27 +27,41 @@ export const osebniPodatki =  {
   },
   starost: {
     label: "Starost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 130,
-      step: 1
-    },
-    value: 40
+      range: {
+        'min': [0, 1],
+      	'max': [130]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 25, 50, 80, 100, 130],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
+    }
   },
   delovnaDoba: {
     label: "Delovna doba",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 80,
-      step: 1
-    },
-    value: 40
+      range: {
+        'min': [0, 1],
+      	'max': [80]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10, 30, 50, 70, 80],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
+    }
   },
   status: {
     label: "Status",
@@ -79,75 +93,124 @@ export const osebniPodatki =  {
 export const dohodek =  {
   placa: {
     label: "Plača (mesečno)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 20000,
-      step: 50
-    },
-    value: 1200
+      range: {
+        'min': [0, 10],
+        '40%': [2000, 100],
+      	'max': [20000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 2000, 10000, 15000, 20000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   pogodbaSKlubom: {
     label: "Pogodba s klubom",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 100
-    },
-    value: 50000
+      range: {
+        'min': [0, 100],
+        '40%': [20000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 20000, 100000, 150000, 200000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   sponzorstva: {
     label: "Sponzorstva (letno)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 500000,
-      step: 100
-    },
-    value: 20000
+      range: {
+        'min': [0, 100],
+        '40%': [10000, 1000],
+      	'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5000, 10000, 50000, 75000, 100000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   nagrade: {
     label: "Nagrade (letno)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 500000,
-      step: 100
-    },
-    value: 10000
+      range: {
+        'min': [0, 100],
+        '40%': [10000, 1000],
+      	'max': [50000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5000, 10000, 25000, 40000, 50000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   dohodkiOdOddajeNepremicnin: {
     label: "Dohodki od oddaje nepremičnin (mesečno)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000,
-      step: 10
-    },
-    value: 500
+      range: {
+        'min': [0, 10],
+      	'max': [5000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 500, 1000, 2500, 4000, 5000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   drugiDohodki: {
     label: "Drugi dohodki",
-    helpText: "Skupni mesečni znesek",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 1000000000,
-      step: 10
-    },
-    value: 0
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 4,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
+    }
   }
 };
 
@@ -242,39 +305,62 @@ export const lastniskiIzdatki =  {
   },
   kreditZaNepremicnino_dodatek1: {
     label: "mesečni obrok",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
-    },
-    value: 420
+      range: {
+        'min': [0, 10],
+     	  '40%': [1000, 50],
+     	  'max': [10000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 500, 1000, 5000, 7500, 10000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    }
   },
   kreditZaNepremicnino_dodatek2: {
     label: "vrednost preostale glavnice",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
-    },
-    value: 100000
+      range: {
+        'min': [0, 100],
+        '40%': [50000, 1000],
+      	'max': [500000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20000, 40000, 100000, 250000, 500000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   kreditZaNepremicnino_dodatek3: {
     label: "preostala leta odplačevanja",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 50,
-      step: 1
-    },
-    value: 20
+      range: {
+        'min': [0, 1],
+      	'max': [30]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5, 10, 15, 20, 30],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
+    }
   },
   vzdrzevanjeNepremicnine: {
     label: "Vzdrževanje nepremičnine",
@@ -291,15 +377,23 @@ export const lastniskiIzdatki =  {
   },
   vzdrzevanjeNepremicnine_dodatek: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 100000,
-      step: 100
-    },
-    value: 3000
+      range: {
+        'min': [0, 100],
+        '40%': [10000, 1000],
+      	'max': [50000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5000, 10000, 25000, 40000, 50000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   najemnina: {
     label: "Najemnina za bivanje",
@@ -329,15 +423,43 @@ export const lastniskiIzdatki =  {
   },
   najemnina_dodatek2: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 10000,
-      step: 100
-    },
-    value: 500
+      range: {
+        'min': [0, 10],
+        '40%': [2000, 100],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 2000, 5000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
+  },
+  najemnina_dodatek3: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 100],
+        '40%': [20000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 20000, 100000, 150000, 200000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   kreditAvto: {
     label: "Kredit/Leasing za avto",
@@ -354,37 +476,60 @@ export const lastniskiIzdatki =  {
   },
   kreditAvto_dodatek1: {
     label: "mesečni obrok",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 5000,
-      step: 5
-    },
-    value: 125
+      range: {
+        'min': [0, 10],
+      	'max': [2000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 200, 400, 1000, 1500, 2000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   kreditAvto_dodatek2: {
     label: "vrednost preostale glavnice",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
-    },
-    value: 6000
+      range: {
+        'min': [0, 10],
+        '40%': [3000, 100],
+      	'max': [20000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1500, 3000, 10000, 16000, 20000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    }
   },
   kreditAvto_dodatek3: {
     label: "preostala leta odplačevanja",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 50,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [30]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5, 10, 15, 20, 30],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 4
   },
@@ -401,27 +546,66 @@ export const lastniskiIzdatki =  {
     },
     value: "LETNO"
   },
-  vzdrzevanjeAvta_dodatek: {
+  vzdrzevanjeAvta_dodatek_mesecno: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 20000,
-      step: 100
+      range: {
+        'min': [0, 1],
+     	  '40%': [100, 5],
+     	  'max': [1000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 50, 100, 500, 750, 1000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 350
+  },
+  vzdrzevanjeAvta_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+     	  '40%': [1000, 50],
+     	  'max': [10000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 500, 1000, 5000, 7500, 10000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 3500
   },
   ostaliDolgovi: {
     label: "Ostali dolgovi",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '40%': [2000, 100],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 2000, 5000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 1500
   }
@@ -441,17 +625,47 @@ export const zivljenjskiIzdatki =  {
     },
     value: "MESECNO"
   },
-  zivljenjskiIzdatki_dodatek: {
+  zivljenjskiIzdatki_dodatek_mesecno: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [100, 5],
+     	  'max': [1000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 50, 100, 500, 750, 1000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 650
+  },
+  zivljenjskiIzdatki_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+     	  '40%': [1000, 50],
+     	  'max': [10000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 500, 1000, 5000, 7500, 10000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 6500
   },
   zavarovanja: {
     label: "Zavarovanja",
@@ -466,17 +680,47 @@ export const zivljenjskiIzdatki =  {
     },
     value: "MESECNO"
   },
-  zavarovanja_dodatek: {
+  zavarovanja_dodatek_mesecno: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 200,
-      step: 5
+      range: {
+        'min': [0, 1],
+     	  '40%': [100, 5],
+     	  'max': [1000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 50, 100, 500, 750, 1000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 80
+  },
+  zavarovanja_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+     	  '40%': [1000, 50],
+     	  'max': [10000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 500, 1000, 5000, 7500, 10000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 800
   },
   ostaliIzdatki: {
     label: "Ostali izdatki",
@@ -491,17 +735,47 @@ export const zivljenjskiIzdatki =  {
     },
     value: "MESECNO"
   },
-  ostaliIzdatki_dodatek: {
+  ostaliIzdatki_dodatek_mesecno: {
     label: "",
-    helpText: "",
-    required: false,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 12000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [120, 5],
+     	  'max': [1200]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 70, 120, 550, 800, 1200],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 360
+  },
+  ostaliIzdatki_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+     	  '40%': [1200, 50],
+     	  'max': [12000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 700, 1200, 5500, 8000, 12000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 3600
   }
 };
 
@@ -510,25 +784,41 @@ export const zivljenjskiIzdatki =  {
 export const pokojnina =  {
   stLetDoUpokojitve: {
     label: "Število let do upokojitve",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 45,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [45]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10, 15, 20, 30, 45],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 20
   },
   pricakovanoStLetVPokoju: {
     label: "Pričakovano število let v pokoju",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 45,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [45]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10, 15, 20, 30, 45],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 25
   },
