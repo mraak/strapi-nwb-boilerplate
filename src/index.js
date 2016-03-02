@@ -98,11 +98,18 @@ const routes = [
   <Redirect from="*" to="/404" />
 ];
 
+function BaseLayout({children}){
+  return <div>{children}</div>
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Layout}>
-        {routes}
+      <Route path="/" name="abc" component={BaseLayout}>
+        {require("./admin/routes")}
+        <Route component={Layout}>
+          {routes}
+        </Route>
       </Route>
     </Router>
   </Provider>,

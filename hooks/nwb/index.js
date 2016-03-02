@@ -55,7 +55,8 @@ module.exports = function(strapi) {
 }
 
 function* serve(context) {
-  if(context.originalUrl.indexOf("admin") > -1)
+  console.log(context);
+  if(context.originalUrl.indexOf("admin") == 0)
     return yield readFileThunk('public/admin/index.html');
 
   // TODO: Move me to the admin
