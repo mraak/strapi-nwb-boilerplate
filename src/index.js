@@ -41,7 +41,8 @@ const rootReducer = combineReducers({
   router: routeReducer,
   form: formReducer,
   api: require("./api/reducers"),
-  titles: require("./decorators").reducer
+  titles: require("./decorators").reducer,
+  header: require("./layout/header/reducers")
 });
 
 const crashReporter = store => next => action => {

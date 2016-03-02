@@ -15,7 +15,7 @@ const links = [
   require("../../posts").headerLink
 ];
 
-@connect(state => state)
+@connect(state => state, require("./actions"))
 @propTypes({
   api: PropTypes.object.isRequired,
   breadcrumbs: PropTypes.array.isRequired,
@@ -25,14 +25,6 @@ const links = [
   router: PropTypes.object.isRequired
 })
 export default class Header extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      opened: false
-    };
-  }
-
   componentDidMount() {
     tcon.add(".tcon");
   }
@@ -42,7 +34,7 @@ export default class Header extends Component {
   }
 
   render() {
-    var { api: { user: { loggedIn }, pages: { data } }, breadcrumbs: [ brand, ...routes ], classes, children } = this.props;
+    var { api: { user: { loggedIn }, pages: { data } }, header: { opened }, breadcrumbs: [ brand, ...routes ], classes, children, toggleOpen, dispatch } = this.props;
     const { router } = this.context;
     const breadcrumbs = [
       <HeaderLink listClassName="hide-for-small" className="brand" index {...brand}/>,
@@ -56,7 +48,7 @@ export default class Header extends Component {
     var menuClasses = {
       right: true,
       "hide-for-small": true,
-      open: this.state.opened
+      open: opened
     };
 
     return (
@@ -65,7 +57,7 @@ export default class Header extends Component {
           {breadcrumbs}
         </ul>
 
-        <a className="tcon tcon-menu--xcross right show-for-small" aria-label="toggle menu" onClick={() => this.setState({ opened: !this.state.opened })}>
+        <a className="tcon tcon-menu--xcross right show-for-small" aria-label="toggle menu" onClick={toggleOpen}>
           <span className="tcon-menu__lines" aria-hidden="true"></span>
           <span className="tcon-visuallyhidden">toggle menu</span>
         </a>
