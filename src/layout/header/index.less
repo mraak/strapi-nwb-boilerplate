@@ -40,10 +40,6 @@
     list-style: none;
 
     &.right {
-      float: right;
-
-      text-align: right;
-
       li {
         margin-left: 24px;
         a:hover {
@@ -57,7 +53,42 @@
     }
   }
 
+  .right {
+    float: right;
+
+    text-align: right;
+  }
+
+  .tcon {
+    height: 24px;
+
+    .tcon-menu__lines, .tcon-menu__lines:before, .tcon-menu__lines:after {
+      background-color: white;
+    }
+
+    &.tcon-menu--xcross.tcon-transform .tcon-menu__lines {
+      background: transparent !important;
+    }
+  }
+
   .brand {
     // .bold;
+  }
+
+  @media (max-width: @breakpoint-small) {
+    ul.open {
+      display: block !important;
+
+      float: none;
+
+      margin-top: 10px;
+
+      li {
+        display: block;
+
+        margin-left: 0px;
+        padding: 4px;
+      }
+    }
   }
 }

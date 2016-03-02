@@ -10,6 +10,7 @@ window.addEventListener("drop", function(e) {
 
 import "./kube/kube.less";
 import 'react-date-picker/index.css';
+import './tcon.css';
 // import "bootstrap-css-only/css/bootstrap.css";
 // import "./index.css";
 
