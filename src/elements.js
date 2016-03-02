@@ -15,7 +15,7 @@ import pureRender from "react-purerender";
 // @pureRender
 export class HeaderLink extends Component {
   render() {
-    const { name, path, query, index, className, onClick } = this.props;
+    const { name, path, query, index, listClassName, className, onClick } = this.props;
     const { router } = this.context;
 
     const handleClick = (e) => {
@@ -29,7 +29,7 @@ export class HeaderLink extends Component {
     var element = index ? IndexLink : Link;
 
     return (
-      <li>{!!path && router.isActive(path, true)
+      <li className={listClassName}>{!!path && router.isActive(path, true)
         ? name
         : createElement(element, {
             className,

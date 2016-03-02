@@ -10,6 +10,7 @@ window.addEventListener("drop", function(e) {
 
 import "./kube/kube.less";
 import 'react-date-picker/index.css';
+import './tcon.css';
 // import "bootstrap-css-only/css/bootstrap.css";
 // import "./index.css";
 
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
   router: routeReducer,
   form: formReducer,
   api: require("./api/reducers"),
-  titles: require("./decorators").reducer
+  titles: require("./decorators").reducer,
+  header: require("./layout/header/reducers")
 });
 
 const crashReporter = store => next => action => {

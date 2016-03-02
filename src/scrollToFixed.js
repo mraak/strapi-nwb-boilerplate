@@ -56,9 +56,9 @@ function STF($) {
 
         // This is the element used to fill the void left by the target element
         // when it goes fixed; otherwise, everything below it moves up the page.
-        var spacer = null;
-
-        var spacerClass;
+        // var spacer = null;
+        //
+        // var spacerClass;
 
         var className;
 
@@ -138,12 +138,12 @@ function STF($) {
 
                 // Set the spacer to fill the height and width of the target
                 // element, then display it.
-                spacer.css({
-                    'display' : target.css('display'),
-                    'width' : dimensions.width,
-                    'height' : dimensions.height,
-                    'float' : target.css('float')
-                });
+                // spacer.css({
+                //     'display' : target.css('display'),
+                //     'width' : dimensions.width,
+                //     'height' : dimensions.height,
+                //     'float' : target.css('float')
+                // });
 
                 // Set the target element to fixed and set its width so it does
                 // not fill the rest of the page horizontally. Also, set its top
@@ -202,7 +202,7 @@ function STF($) {
 
                 // Hide the spacer now that the target element will fill the
                 // space.
-                spacer.css('display', 'none');
+                // spacer.css('display', 'none');
 
                 // Remove the style attributes that were added to the target.
                 // This will reverse the target back to the its original style.
@@ -464,7 +464,7 @@ function STF($) {
 
             // Create a spacer element to fill the void left by the target
             // element when it goes fixed.
-            spacer = $('<div />');
+            // spacer = $('<div />');
 
             position = target.css('position');
             originalPosition = target.css('position');
@@ -472,7 +472,7 @@ function STF($) {
             originalOffsetTop = target.css('top');
 
             // Place the spacer right after the target element.
-            if (isUnfixed()) base.$el.after(spacer);
+            // if (isUnfixed()) base.$el.after(spacer);
 
             // Reset the target element offsets when the window is resized, then
             // check to see if we need to fix or unfix the target element.
@@ -513,13 +513,13 @@ function STF($) {
                 target.bind('unfixed.ScrollToFixed', base.options.unfixed);
             }
 
-            if (base.options.spacerClass) {
-                spacer.addClass(base.options.spacerClass);
-            }
+            // if (base.options.spacerClass) {
+            //     spacer.addClass(base.options.spacerClass);
+            // }
 
-            target.bind('resize.ScrollToFixed', function() {
-                spacer.height(target.height());
-            });
+            // target.bind('resize.ScrollToFixed', function() {
+            //     spacer.height(target.height());
+            // });
 
             target.bind('scroll.ScrollToFixed', function() {
                 target.trigger('preUnfixed.ScrollToFixed');
@@ -540,8 +540,8 @@ function STF($) {
 
                 target.unbind('.ScrollToFixed');
 
-                //remove spacer from dom
-                spacer.remove();
+                // remove spacer from dom
+                // spacer.remove();
 
                 base.$el.removeData('ScrollToFixed');
             });
