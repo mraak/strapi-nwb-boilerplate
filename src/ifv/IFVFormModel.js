@@ -1901,48 +1901,111 @@ export const zascitaDelovneSposobnosti =  {
   },
   odstotekZaInvalidskoPokojnino: {
     label: "Višina odstotka za odmero invalidske pokojnine",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "text",
     props: {
+      range: {
+        'min': [0, 1],
+      	'max': [100]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20, 40, 60, 80, 100],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
-    value: ""
+    value: 50
   },
   invalidskaPokojnina: {
     label: "Invalidska pokojnina, ki bi jo prejeli danes",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "text",
     props: {
+      range: {
+        'min': [0, 1],
+        '25%': [100, 10],
+        '65%': [1000, 100],
+      	'max': [3000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 100, 500, 1000, 3000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
-    value: ""
+    value: 500
   },
   lastniskiIzdatki: {
     label: "Izdatki povezani z lastništvom",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "text",
     props: {
+      range: {
+        'min': [0, 10],
+        '20%': [1000, 100],
+        '60%': [10000, 1000],
+        'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 5000, 10000, 50000, 100000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
-    value: ""
+    value: 5000
   },
   zivljenjskiIzdatki: {
     label: "Življenjski izdatki",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "text",
     props: {
+      range: {
+        'min': [0, 10],
+        '20%': [1000, 100],
+        '60%': [10000, 1000],
+        'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 5000, 10000, 50000, 100000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
-    value: ""
+    value: 5000
   },
   izdatkiSkupaj: {
     label: "Izdatki skupaj",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "text",
     props: {
+      range: {
+        'min': [0, 10],
+        '20%': [1000, 100],
+        '60%': [10000, 1000],
+        'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 5000, 10000, 50000, 100000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
-    value: ""
+    value: 5000
   },
   vrednostZavarovanjInvalidnost: {
     label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito invalidnosti",
