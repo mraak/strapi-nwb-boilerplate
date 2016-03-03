@@ -130,7 +130,7 @@ function renderElement({ type, props }, field) {
     return createElement("label", {className: "bold italic"}, fieldValue(field));
 
   if(type == "label_subheading_normal")
-    return createElement("label", {className: "negative-base-margin"}, fieldValue(field));
+    return createElement("label", {className: "negative-bottom-margin"}, fieldValue(field));
 
   if(type == "label_subheading_italic")
     return createElement("label", {className: "italic negative-base-margin"}, fieldValue(field));
@@ -209,6 +209,7 @@ export default class DynamicForm extends Component {
             return (
               <section key={key}>
                 <label>{element.label} {field.error && <span className="error">{showErrors(field.error)}</span>}</label>
+                {element.helpText && <span className="small">{element.helpText}</span>}
                 {renderElement(element, field)}
               </section>
             );
