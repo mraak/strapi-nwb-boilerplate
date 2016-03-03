@@ -81,14 +81,15 @@ function renderElement({ type, props }, field) {
       ...field
     });
 
-  // if(type == "select") {
-  //   return createElement(Select, {
-	// 		disabled: false,
-	// 		clearable: true,
-  //     ...props,
-  //     ...field
-  //   });
-  // }
+  if(type == "select") {
+    return createElement(Select, {
+			disabled: false,
+			clearable: true,
+      ...props,
+      value: field.value,
+      onChange: field.onChange
+    });
+  }
 
   if(type == "slider") {
     return (

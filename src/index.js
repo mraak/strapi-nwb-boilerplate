@@ -112,4 +112,5 @@ ReactDOM.render(
 );
 
 import './nouislider.css';
+import './select/less/select.less';
 import './theme.less';

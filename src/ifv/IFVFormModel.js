@@ -1,21 +1,5 @@
 /*************** OSEBNI PODATKI ***************/
 export const osebniPodatki =  {
-  // ddl: {
-  //   label: "DDL",
-  //   name: "places",
-  //   type: "radio-list",
-  //   options: [
-  //     { value: 'australian-capital-territory', label: 'Australian Capital Territory' },
-  //   	{ value: 'new-south-wales', label: 'New South Wales' },
-  //   	{ value: 'victoria', label: 'Victoria' },
-  //   	{ value: 'queensland', label: 'Queensland' },
-  //   	{ value: 'western-australia', label: 'Western Australia' },
-  //   	{ value: 'south-australia', label: 'South Australia' },
-  //   	{ value: 'tasmania', label: 'Tasmania' },
-  //   	{ value: 'northern-territory', label: 'Northern Territory'  }
-  //   ],
-  //   value: "new-south-wales"
-  // },
   ime: {
     label: "Ime",
     helpText: "",
@@ -2093,20 +2077,18 @@ export const analizaStroskovInPregledProduktov =  {
   },
   tipProdukta: {
     label: "Tip produkta",
-    helpText: "",
-    required: true,
-    type: "radio-list",
+    type: "select",
     props: {
-      items: [
-        { label: "Klasično življenjsko zavarovanje", value: "1" },
-        { label: "Naložbeno življenjsko zavarovanje", value: "2" },
-        { label: "Investicijsko zavarovanje", value: "3" },
-        { label: "Prostovoljno pokojninsko zavarovanje", value: "4" },
-        { label: "Varčevanje v vzajemnih skladih", value: "5" },
-        { label: "Varčevanje na banki", value: "6" }
-      ]
+      options: [
+        { value: '1', label: 'Klasično življenjsko zavarovanje' },
+      	{ value: '2', label: 'Naložbeno življenjsko zavarovanje' },
+      	{ value: '3', label: 'Investicijsko zavarovanje' },
+      	{ value: '4', label: 'Prostovoljno pokojninsko zavarovanje' },
+      	{ value: '5', label: 'Varčevanje v vzajemnih skladih' },
+      	{ value: '6', label: 'Varčevanje na banki' }
+      ],
     },
-    value: ""
+    value: "1"
   },
   tipProdukta_mesecniZnesek: {
     label: "Mesečni znesek",
@@ -2263,20 +2245,18 @@ export const analizaStroskovInPregledProduktov =  {
   },
   tipProdukta2: {
     label: "Tip produkta",
-    helpText: "",
-    required: true,
-    type: "radio-list",
+    type: "select",
     props: {
-      items: [
-        { label: "Klasično življenjsko zavarovanje", value: "1" },
-        { label: "Naložbeno življenjsko zavarovanje", value: "2" },
-        { label: "Investicijsko zavarovanje", value: "3" },
-        { label: "Prostovoljno pokojninsko zavarovanje", value: "4" },
-        { label: "Varčevanje v vzajemnih skladih", value: "5" },
-        { label: "Varčevanje na banki", value: "6" }
-      ]
+      options: [
+        { value: '1', label: 'Klasično življenjsko zavarovanje' },
+      	{ value: '2', label: 'Naložbeno življenjsko zavarovanje' },
+      	{ value: '3', label: 'Investicijsko zavarovanje' },
+      	{ value: '4', label: 'Prostovoljno pokojninsko zavarovanje' },
+      	{ value: '5', label: 'Varčevanje v vzajemnih skladih' },
+      	{ value: '6', label: 'Varčevanje na banki' }
+      ],
     },
-    value: ""
+    value: "1"
   },
   tipProdukta_mesecniZnesek2: {
     label: "Mesečni znesek",
