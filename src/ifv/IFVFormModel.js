@@ -194,7 +194,8 @@ export const dohodek =  {
       },
       tooltips: false,
       currency: true
-    }
+    },
+    value: 10000
   }
 };
 
@@ -305,7 +306,8 @@ export const lastniskiIzdatki =  {
      	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 500
   },
   kreditZaNepremicnino_dodatek2: {
     label: "vrednost preostale glavnice",
@@ -325,7 +327,8 @@ export const lastniskiIzdatki =  {
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 10000
   },
   kreditZaNepremicnino_dodatek3: {
     label: "preostala leta odplačevanja",
@@ -445,7 +448,8 @@ export const lastniskiIzdatki =  {
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 1000
   },
   najemnina_dodatek_letno: {
     label: "",
@@ -465,7 +469,8 @@ export const lastniskiIzdatki =  {
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 10000
   },
   kreditAvto: {
     label: "Kredit/Leasing za avto",
@@ -497,7 +502,8 @@ export const lastniskiIzdatki =  {
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 1000
   },
   kreditAvto_dodatek2: {
     label: "vrednost preostale glavnice",
@@ -517,7 +523,8 @@ export const lastniskiIzdatki =  {
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 1500
   },
   kreditAvto_dodatek3: {
     label: "preostala leta odplačevanja",
