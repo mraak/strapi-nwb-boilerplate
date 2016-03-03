@@ -269,9 +269,7 @@ function tveganja() {
                           izdatkiSkupaj = 0,
                           vrednostZavarovanjInvalidnost = 0,
                           vrednostZavarovanjBolezni = 0 }) {
-        return Math.round(
-          delovnaDoba
-        );
+        return Math.round(delovnaDoba + invalidskaPokojnina + lastniskiIzdatki + zivljenjskiIzdatki + izdatkiSkupaj + vrednostZavarovanjInvalidnost + vrednostZavarovanjBolezni);
       }
     },
     {
@@ -344,8 +342,26 @@ function premozenje() {
         "zavarovanja33",
         "zavarovanja44",
         "zavarovanja55"],
-      amount: function(data) {
-        return 1;
+      amount: function({ tipProdukta_mesecniZnesek = 0, tipProdukta_trenutnaVrednost = 0,
+                          zavarovanjaNaProduktu_zivljenskoZavarovanje = 0, zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje = 0,
+                          zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni = 0, zavarovanjaNaProduktu_strosekDodatnihZavarovanj = 0,
+                          tipProdukta_mesecniZnesek2 = 0, tipProdukta_trenutnaVrednost2 = 0,
+                          zavarovanjaNaProduktu_zivljenskoZavarovanje2 = 0, zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2 = 0,
+                          zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2 = 0, zavarovanjaNaProduktu_strosekDodatnihZavarovanj2 = 0,
+                          denarnaSredstva = 0, vzajemniSkladi = 0, delnice = 0, enkratniNalozbeniProdukti = 0,
+                          zavarovanja1 = 0, zavarovanja3 = 0, zavarovanja4 = 0, zavarovanja5 = 0,
+                          denarnaSredstva2 = 0, vzajemniSkladi2 = 0, delnice2 = 0, enkratniNalozbeniProdukti2 = 0,
+                          zavarovanja11 = 0, zavarovanja33 = 0, zavarovanja44 = 0, zavarovanja55 = 0 }) {
+        return Math.round(tipProdukta_mesecniZnesek * 12 + tipProdukta_trenutnaVrednost +
+                zavarovanjaNaProduktu_zivljenskoZavarovanje + zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje +
+                zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni + zavarovanjaNaProduktu_strosekDodatnihZavarovanj +
+                tipProdukta_mesecniZnesek2 + tipProdukta_trenutnaVrednost2 +
+                zavarovanjaNaProduktu_zivljenskoZavarovanje2 + zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2 +
+                zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2 + zavarovanjaNaProduktu_strosekDodatnihZavarovanj2 +
+                denarnaSredstva + vzajemniSkladi + delnice + enkratniNalozbeniProdukti +
+                zavarovanja1 + zavarovanja3 + zavarovanja4 + zavarovanja5 +
+                denarnaSredstva2 + vzajemniSkladi2 + delnice2 + enkratniNalozbeniProdukti2 +
+                zavarovanja11 + zavarovanja33 + zavarovanja44 + zavarovanja55);
       }
     },
     {
