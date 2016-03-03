@@ -36,6 +36,7 @@ export default class IFVForm extends Component {
     const { api: { sections }, route, saveSection } = this.props;
     const formData = this.props.form;
     const forms = route.forms();
+    const filteredForms = forms.filter(({ amount }) => !!amount);
 
     function handleSubmit(key) {
       return (data) => saveSection(key, data);
@@ -55,36 +56,45 @@ export default class IFVForm extends Component {
           ))}
         </column>
 
-        <column styleName="fixed-column">
-          <fieldset className="fixed white sticky">
-            <h4 className="sectionTitle">Izračun</h4>
+        { filteredForms.length > 0 &&
+          <column styleName="fixed-column">
+            <fieldset className="fixed white sticky">
+              <h4 className="sectionTitle">Izračun</h4>
 
-            <table className="table-bordered">
-              <thead>
-                <tr>
-                  <th>Section</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {forms.map(({ key, title, fields, amount }) => (
+              <table className="table-bordered">
+                <thead>
                   <tr>
-                    <td>{title}</td>
-                    <td>{amount(_.mapValues(_.pick(formData[key], fields), "value"))}</td>
+                    <th>Section</th>
+                    <th>Amount</th>
                   </tr>
-                ))}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colSpan="1">Total</td>
-                  <td>{forms.reduce((memo, { key, fields, amount }) => {
-                    return memo + amount(_.mapValues(_.pick(formData[key], fields), "value"));
-                  }, 0)}</td>
-                </tr>
-              </tfoot>
-            </table>
-          </fieldset>
-        </column>
+                </thead>
+                <tbody>
+                  {filteredForms.map(({ key, title, fields, fieldsFunction, amount }) => {
+                    const keys = fieldsFunction ? fieldsFunction(_.mapValues(filteredForms[key], "value")).filter(o => typeof o == "string") : fields;
+console.log(keys);
+                    return (
+                      <tr>
+                        <td>{title}</td>
+                        <td>{amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan="1">Total</td>
+                    <td>{filteredForms.reduce((memo, { key, fields, fieldsFunction, amount }) => {
+                      const keys = fieldsFunction ? fieldsFunction(_.mapValues(filteredForms[key], "value")).filter(o => typeof o == "string") : fields;
+
+                      return memo + amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0;
+                    }, 0)}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </fieldset>
+          </column>
+        }
+
       </row>
     );
   }

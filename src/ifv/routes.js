@@ -9,10 +9,7 @@ function osebniPodatki() {
     {
       key: "osebniPodatki",
       title: "Osebni podatki",
-      fieldsFunction: (data) => ["id", "ime", "starost", "delovnaDoba", "status", data.status == "POROCEN" && "steviloOtrok"],
-      amount: function(data) {
-        return "/";
-      }
+      fieldsFunction: (data) => ["id", "ime", "starost", "delovnaDoba", "status", data.status == "POROCEN" && "steviloOtrok"]
     }
   ];
 }
@@ -23,29 +20,50 @@ function dohodkiInIzdatki() {
       key: "dohodek",
       title: "Dohodek",
       fields: ["id", "placa", "pogodbaSKlubom", "sponzorstva", "nagrade", "dohodkiOdOddajeNepremicnin", "drugiDohodki"],
-      amount: function(data) {
-        return data.placa * 12 - data.pogodbaSKlubom + data.sponzorstva + data.nagrade + data.dohodkiOdOddajeNepremicnin * 12 + data.drugiDohodki;
+      amount: function({ placa = 0, pogodbaSKlubom = 0, sponzorstva = 0, nagrade = 0, dohodkiOdOddajeNepremicnin = 0, drugiDohodki = 0}) {
+        return placa * 12 + pogodbaSKlubom + sponzorstva + nagrade + dohodkiOdOddajeNepremicnin * 12 + drugiDohodki;
       }
     },
     {
       key: "izdatki",
       title: "Izdatki",
-      fields: ["id", "kontrola", "koristimLimit", "vsiDolgoviPlacaniPravocasno", "zadolzenost", "rezerva"],
-      amount: function(data) {
-        return "/";
-      }
+      fields: ["id", "kontrola", "koristimLimit", "vsiDolgoviPlacaniPravocasno", "zadolzenost", "rezerva"]
     },
     {
       key: "lastniskiIzdatki",
       title: "Lastniški izdatki",
-      fieldsFunction: (data) => ["id", "kreditZaNepremicnino", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek1",
-      data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek2", data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek3", "vzdrzevanjeNepremicnine",
-      "vzdrzevanjeNepremicnine_dodatek", "najemnina", data.najemnina == "DA" && "najemnina_dodatek1", data.najemnina_dodatek1 == "MESECNO" && "najemnina_dodatek2",
-      data.najemnina_dodatek1 == "LETNO" && "najemnina_dodatek3", "kreditAvto", data.kreditAvto == "DA" && "kreditAvto_dodatek1", data.kreditAvto == "DA" && "kreditAvto_dodatek2",
-      data.kreditAvto == "DA" && "kreditAvto_dodatek3", "vzdrzevanjeAvta", data.vzdrzevanjeAvta == "MESECNO" && "vzdrzevanjeAvta_dodatek_mesecno",
-      data.vzdrzevanjeAvta == "LETNO" && "vzdrzevanjeAvta_dodatek_letno", "ostaliDolgovi"],
-      amount: function(data) {
-        return 1;
+      fieldsFunction: (data) => ["id",
+        "kreditZaNepremicnino",
+          data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek1",
+          data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek2",
+          data.kreditZaNepremicnino == "DA" && "kreditZaNepremicnino_dodatek3",
+        "vzdrzevanjeNepremicnine",
+          data.vzdrzevanjeNepremicnine == "MESECNO" && "vzdrzevanjeNepremicnine_dodatek_mesecno",
+          data.vzdrzevanjeNepremicnine == "LETNO" && "vzdrzevanjeNepremicnine_dodatek_letno",
+        "najemnina",
+          data.najemnina == "DA" && "najemnina_dodatek1",
+            data.najemnina_dodatek1 == "MESECNO" && "najemnina_dodatek_mesecno",
+            data.najemnina_dodatek1 == "LETNO" && "najemnina_dodatek_letno",
+        "kreditAvto",
+          data.kreditAvto == "DA" && "kreditAvto_dodatek1",
+          data.kreditAvto == "DA" && "kreditAvto_dodatek2",
+          data.kreditAvto == "DA" && "kreditAvto_dodatek3",
+        "vzdrzevanjeAvta",
+          data.vzdrzevanjeAvta == "MESECNO" && "vzdrzevanjeAvta_dodatek_mesecno",
+          data.vzdrzevanjeAvta == "LETNO" && "vzdrzevanjeAvta_dodatek_letno",
+        "ostaliDolgovi"],
+      amount: function({kreditZaNepremicnino_dodatek1 = 0/*, kreditZaNepremicnino_dodatek2 = 0,
+                        vzdrzevanjeNepremicnine_dodatek_mesecno = 0, vzdrzevanjeNepremicnine_dodatek_letno = 0,
+                        najemnina_dodatek_mesecno = 0, najemnina_dodatek_letno = 0,
+                        kreditAvto_dodatek1 = 0, kreditAvto_dodatek2 = 0, kreditAvto_dodatek3 = 0,
+                        vzdrzevanjeAvta_dodatek_mesecno = 0, vzdrzevanjeAvta_dodatek_letno = 0,
+                        ostaliDolgovi = 0*/}) {
+        return kreditZaNepremicnino_dodatek1 * 12/* + kreditZaNepremicnino_dodatek2 +
+                vzdrzevanjeNepremicnine_dodatek_mesecno * 12 + vzdrzevanjeNepremicnine_dodatek_letno +
+                najemnina_dodatek_mesecno * 12 + najemnina_dodatek_letno +
+                kreditAvto_dodatek1 + kreditAvto_dodatek2 +
+                vzdrzevanjeAvta_dodatek_mesecno * 12 + vzdrzevanjeAvta_dodatek_letno +
+                ostaliDolgovi*/;
       }
     },
     {
@@ -55,26 +73,11 @@ function dohodkiInIzdatki() {
       data.zivljenjskiIzdatki == "LETNO" && "zivljenjskiIzdatki_dodatek_letno", "zavarovanja", data.zavarovanja == "MESECNO" && "zavarovanja_dodatek_mesecno",
       data.zavarovanja == "LETNO" && "zavarovanja_dodatek_letno", "ostaliIzdatki", data.ostaliIzdatki == "MESECNO" && "ostaliIzdatki_dodatek_mesecno",
       data.ostaliIzdatki == "LETNO" && "ostaliIzdatki_dodatek_letno"],
-      amount: function(data) {
-        var sum = 0;
-        if(data.zivljenjskiIzdatki == "MESECNO") {
-          sum += data.zivljenjskiIzdatki_dodatek * 12;
-          if(data.zavarovanja == "MESECNO") {
-            sum += data.zavarovanja_dodatek * 12;
-            if(data.ostaliIzdatki == "MESECNO") {
-              sum += data.ostaliIzdatki_dodatek * 12;
-            }
-            else
-              sum += data.ostaliIzdatki_dodatek;
-          }
-          else {
-            sum += data.zavarovanja_dodatek;
-          }
-        }
-        else {
-          sum += data.zivljenjskiIzdatki_dodatek;
-        }
-        return sum;
+      amount: function(zivljenjskiIzdatki_dodatek_mesecno = 0, zivljenjskiIzdatki_dodatek_letno = 0,
+                        zavarovanja_dodatek_mesecno = 0, zavarovanja_dodatek_letno = 0,
+                        ostaliIzdatki_dodatek_mesecno = 0, ostaliIzdatki_dodatek_letno = 0) {
+                          console.log(arguments);
+        return zivljenjskiIzdatki_dodatek_mesecno * 12 + zivljenjskiIzdatki_dodatek_letno + zavarovanja_dodatek_mesecno * 12 + zavarovanja_dodatek_letno + ostaliIzdatki_dodatek_mesecno * 12 + ostaliIzdatki_dodatek_letno;
       }
     }
   ];
@@ -163,7 +166,8 @@ function tveganja() {
     {
       key: "zascitaDelovneSposobnosti",
       title: "Zaščita delovne sposobnosti",
-      fieldsFunction: (data) => ["id", "naslov", "naslov2", "delovnaDoba", "odstotekZaInvalidskoPokojnino", "invalidskaPokojnina", "lastniskiIzdatki", "zivljenjskiIzdatki", "izdatkiSkupaj", "vrednostZavarovanjInvalidnost", "vrednostZavarovanjBolezni"],
+      fieldsFunction: (data) => ["id", "naslov", "naslov2", "delovnaDoba", "odstotekZaInvalidskoPokojnino", "invalidskaPokojnina", "lastniskiIzdatki", "zivljenjskiIzdatki",
+      "izdatkiSkupaj", "vrednostZavarovanjInvalidnost", "vrednostZavarovanjBolezni"],
       amount: function(data) {
         return 1;
       }
@@ -172,6 +176,7 @@ function tveganja() {
       key: "analizaStroskov",
       title: "Analiza stroškov",
       fields: ["id", "analizaStroskov"],
+      calculation: false,
       amount: function(data) {
         return 1;
       }
@@ -185,6 +190,7 @@ function premozenje() {
       key: "upravljanjeMojegaPremozenja",
       title: "Upravljanje mojega premoženja",
       fields: ["id", "splosnoZnanje", "pregledNalozb", "nalozbePrilagojene", "analizaStroskovNalozbInVarcevalnihProduktov", "razlikeMedOsebjem"],
+      calculation: false,
       amount: function(data) {
         return 1;
       }
@@ -206,6 +212,7 @@ function premozenje() {
       key: "financniStres",
       title: "Finančni stres",
       fields: ["id", "nivo", "razlog"],
+      calculation: false,
       amount: function(data) {
         return 1;
       }

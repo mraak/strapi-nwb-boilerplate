@@ -359,7 +359,28 @@ export const lastniskiIzdatki =  {
     },
     value: "LETNO"
   },
-  vzdrzevanjeNepremicnine_dodatek: {
+  vzdrzevanjeNepremicnine_dodatek_mesecno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+        '40%': [1000, 100],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 2500, 5000, 7500, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    },
+    value: 3000
+  },
+  vzdrzevanjeNepremicnine_dodatek_letno: {
     label: "",
     type: "slider",
     required: true,
@@ -367,17 +388,18 @@ export const lastniskiIzdatki =  {
       range: {
         'min': [0, 100],
         '40%': [10000, 1000],
-      	'max': [50000]
+      	'max': [100000]
       },
       pips: {
     		mode: 'values',
-    		values: [0, 5000, 10000, 25000, 40000, 50000],
+    		values: [0, 5000, 25000, 50000, 75000, 100000],
     		density: 4,
     		stepped: true
     	},
       tooltips: false,
       currency: true
-    }
+    },
+    value: 30000
   },
   najemnina: {
     label: "Najemnina za bivanje",
@@ -405,7 +427,7 @@ export const lastniskiIzdatki =  {
     },
     value: "MESECNO"
   },
-  najemnina_dodatek2: {
+  najemnina_dodatek_mesecno: {
     label: "",
     type: "slider",
     required: true,
@@ -425,7 +447,7 @@ export const lastniskiIzdatki =  {
       currency: true
     }
   },
-  najemnina_dodatek3: {
+  najemnina_dodatek_letno: {
     label: "",
     type: "slider",
     required: true,
