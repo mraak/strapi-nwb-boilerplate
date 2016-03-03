@@ -51,9 +51,6 @@ function formatInputValue(currency, val) {
 
 function onSliderChange(field) {
   return function(value) {
-    console.log("onSliderChange");
-    console.log("onSliderChange", field);
-    console.log("onSliderChange", value);
     return field.onChange(value[0]);
   }
 }
@@ -94,8 +91,6 @@ function renderElement({ type, props }, field) {
   // }
 
   if(type == "slider") {
-    // console.log("renderElement", props, field);
-
     return (
       <row>
       <column cols="10">
@@ -110,8 +105,8 @@ function renderElement({ type, props }, field) {
           },
           ...props,
           start: [fieldValue(field)],
-          // onChange: onSliderChange(field),
-          // onSlide: onSliderChange(field)
+          onChange: onSliderChange(field),
+          onSlide: onSliderChange(field)
         })}
       </column>
 
