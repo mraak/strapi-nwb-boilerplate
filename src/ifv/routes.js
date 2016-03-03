@@ -52,18 +52,18 @@ function dohodkiInIzdatki() {
           data.vzdrzevanjeAvta == "MESECNO" && "vzdrzevanjeAvta_dodatek_mesecno",
           data.vzdrzevanjeAvta == "LETNO" && "vzdrzevanjeAvta_dodatek_letno",
         "ostaliDolgovi"],
-      amount: function({kreditZaNepremicnino_dodatek1 = 0/*, kreditZaNepremicnino_dodatek2 = 0,
+      amount: function({kreditZaNepremicnino_dodatek1 = 0, kreditZaNepremicnino_dodatek2 = 0,
                         vzdrzevanjeNepremicnine_dodatek_mesecno = 0, vzdrzevanjeNepremicnine_dodatek_letno = 0,
                         najemnina_dodatek_mesecno = 0, najemnina_dodatek_letno = 0,
                         kreditAvto_dodatek1 = 0, kreditAvto_dodatek2 = 0, kreditAvto_dodatek3 = 0,
                         vzdrzevanjeAvta_dodatek_mesecno = 0, vzdrzevanjeAvta_dodatek_letno = 0,
-                        ostaliDolgovi = 0*/}) {
-        return kreditZaNepremicnino_dodatek1 * 12/* + kreditZaNepremicnino_dodatek2 +
+                        ostaliDolgovi = 0}) {
+        return kreditZaNepremicnino_dodatek1 * 12 + kreditZaNepremicnino_dodatek2 +
                 vzdrzevanjeNepremicnine_dodatek_mesecno * 12 + vzdrzevanjeNepremicnine_dodatek_letno +
                 najemnina_dodatek_mesecno * 12 + najemnina_dodatek_letno +
                 kreditAvto_dodatek1 + kreditAvto_dodatek2 +
                 vzdrzevanjeAvta_dodatek_mesecno * 12 + vzdrzevanjeAvta_dodatek_letno +
-                ostaliDolgovi*/;
+                ostaliDolgovi;
       }
     },
     {

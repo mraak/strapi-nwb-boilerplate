@@ -24,14 +24,6 @@ import scrollToFixed from "../scrollToFixed";
 @css(require("./IFVForm.less"), { allowMultiple: true })
 // @pureRender
 export default class IFVForm extends Component {
-  componentDidMount() {
-    $(".sticky").scrollToFixed({
-      marginTop: $('.header').outerHeight(true)
-    });
-  }
-  componentWillUnmount() {
-    //$("fieldset").unstick();
-  }
   render() {
     const { api: { sections }, route, saveSection } = this.props;
     const formData = this.props.form;
@@ -58,44 +50,63 @@ export default class IFVForm extends Component {
 
         { filteredForms.length > 0 &&
           <column styleName="fixed-column">
-            <fieldset className="fixed white sticky">
-              <h4 className="sectionTitle">Izračun</h4>
-
-              <table className="table-bordered">
-                <thead>
-                  <tr>
-                    <th>Section</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredForms.map(({ key, title, fields, fieldsFunction, amount }) => {
-                    const keys = fieldsFunction ? fieldsFunction(_.mapValues(filteredForms[key], "value")).filter(o => typeof o == "string") : fields;
-console.log(keys);
-                    return (
-                      <tr>
-                        <td>{title}</td>
-                        <td>{amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0}</td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="1">Total</td>
-                    <td>{filteredForms.reduce((memo, { key, fields, fieldsFunction, amount }) => {
-                      const keys = fieldsFunction ? fieldsFunction(_.mapValues(filteredForms[key], "value")).filter(o => typeof o == "string") : fields;
-
-                      return memo + amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0;
-                    }, 0)}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </fieldset>
+            <AmountTable filteredForms={filteredForms} formData={formData}/>
           </column>
         }
 
       </row>
+    );
+  }
+}
+
+class AmountTable extends Component {
+  componentDidMount() {
+    $(".sticky").scrollToFixed({
+      marginTop: $('.header').outerHeight(true)
+    });
+  }
+  componentWillUnmount() {
+    // $(".sticky").unstick();
+  }
+
+  render() {
+    const { filteredForms, formData } = this.props;
+
+    return (
+      <fieldset className="fixed white sticky">
+        <h4 className="sectionTitle">Izračun</h4>
+
+        <table className="table-bordered">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredForms.map(({ key, title, fields, fieldsFunction, amount }) => {
+              const keys = fieldsFunction ? fieldsFunction(_.mapValues(formData[key], "value")).filter(o => typeof o == "string") : fields;
+
+              return (
+                <tr>
+                  <td>{title}</td>
+                  <td>{amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="1">Total</td>
+              <td>{filteredForms.reduce((memo, { key, fields, fieldsFunction, amount }) => {
+                const keys = fieldsFunction ? fieldsFunction(_.mapValues(formData[key], "value")).filter(o => typeof o == "string") : fields;
+
+                return memo + amount(_.mapValues(_.pick(formData[key], keys), "value")) || 0;
+              }, 0)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </fieldset>
     );
   }
 }
