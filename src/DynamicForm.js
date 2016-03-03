@@ -51,6 +51,9 @@ function formatInputValue(currency, val) {
 
 function onSliderChange(field) {
   return function(value) {
+    console.log("onSliderChange");
+    console.log("onSliderChange", field);
+    console.log("onSliderChange", value);
     return field.onChange(value[0]);
   }
 }
@@ -70,7 +73,7 @@ function renderElement({ type, props }, field) {
     return createElement(Slider, {
       step: 100,
       ...props,
-      value: field.value,
+      value: fieldValue(field) || 0,
       onChange: field.onChange
     });
 
@@ -91,6 +94,8 @@ function renderElement({ type, props }, field) {
   // }
 
   if(type == "slider") {
+    // console.log("renderElement", props, field);
+
     return (
       <row>
       <column cols="10">
@@ -104,14 +109,14 @@ function renderElement({ type, props }, field) {
             }
           },
           ...props,
-          start: [field.value || 0],
-          onChange: onSliderChange(field),
-          onSlide: onSliderChange(field)
+          start: [fieldValue(field)],
+          // onChange: onSliderChange(field),
+          // onSlide: onSliderChange(field)
         })}
       </column>
 
       <column cols="2">
-        <input type='text' disabled value={formatInputValue(props.currency, field.value)} />
+        <input type='text' disabled value={formatInputValue(props.currency, fieldValue(field))} />
       </column>
       </row>
    )
@@ -119,28 +124,35 @@ function renderElement({ type, props }, field) {
 
 
   if(type == "label_heading_normal")
-    return createElement("label", {className: "bold"}, field.value);
+    return createElement("label", {className: "bold"}, fieldValue(field));
 
   if(type == "label_heading_italic")
-    return createElement("label", {className: "bold italic"}, field.value);
+    return createElement("label", {className: "bold italic"}, fieldValue(field));
 
   if(type == "label_subheading_normal")
-    return createElement("label", {className: "negative-base-margin"}, field.value);
+    return createElement("label", {className: "negative-base-margin"}, fieldValue(field));
 
   if(type == "label_subheading_italic")
-    return createElement("label", {className: "italic negative-base-margin"}, field.value);
+    return createElement("label", {className: "italic negative-base-margin"}, fieldValue(field));
 
   if(type == "label_subheading_italic_margin")
-    return createElement("label", {className: "italic"}, field.value);
+    return createElement("label", {className: "italic"}, fieldValue(field));
 
   if(type == "cite")
-    return createElement("label", {className: "italic small negative-base-margin",}, field.value);
+    return createElement("label", {className: "italic small negative-base-margin",}, fieldValue(field));
 
   return createElement("input", {
     type: type || "text",
     ...props,
     ...field
   });
+}
+
+function fieldValue(field) {
+  if(typeof field.value == "undefined")
+    return field.initialValue;
+
+  return field.value;
 }
 
 @reduxForm({
@@ -151,7 +163,10 @@ function renderElement({ type, props }, field) {
   return {
     fields: keys,
     fieldKeys: keys,
-    initialValues: data || _.mapValues(model, "value")
+    initialValues: {
+      ..._.mapValues(model, "value"),
+      ...(data || {})
+    }
   };
 })
 @connect(state => state)
