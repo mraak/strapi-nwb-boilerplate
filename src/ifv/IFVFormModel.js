@@ -56,7 +56,7 @@ export const osebniPodatki =  {
       pips: {
     		mode: 'values',
     		values: [0, 10, 30, 50, 70, 80],
-    		density: 4,
+    		density: 6,
     		stepped: true
     	},
       tooltips: false,
@@ -183,7 +183,7 @@ export const dohodek =  {
       pips: {
     		mode: 'values',
     		values: [0, 500, 1000, 2500, 4000, 5000],
-    		density: 4,
+    		density: 2,
     		stepped: true
     	},
       tooltips: false,
@@ -205,7 +205,7 @@ export const dohodek =  {
       pips: {
         mode: 'values',
         values: [0, 10000, 50000, 250000, 650000, 1000000],
-        density: 4,
+        density: 3,
         stepped: true
       },
       tooltips: false,
@@ -354,8 +354,8 @@ export const lastniskiIzdatki =  {
       },
       pips: {
     		mode: 'values',
-    		values: [0, 5, 10, 15, 20, 30],
-    		density: 4,
+    		values: [0, 5, 10, 15, 20, 25, 30],
+    		density: 3.5,
     		stepped: true
     	},
       tooltips: false,
@@ -486,7 +486,7 @@ export const lastniskiIzdatki =  {
       pips: {
     		mode: 'values',
     		values: [0, 200, 400, 1000, 1500, 2000],
-    		density: 4,
+    		density: 2,
     		stepped: true
     	},
       tooltips: false,
@@ -525,7 +525,7 @@ export const lastniskiIzdatki =  {
       pips: {
     		mode: 'values',
     		values: [0, 5, 10, 15, 20, 30],
-    		density: 4,
+    		density: 3.5,
     		stepped: true
     	},
       tooltips: false,
@@ -748,7 +748,7 @@ export const zivljenjskiIzdatki =  {
       pips: {
      	  mode: 'values',
      		values: [0, 70, 120, 550, 800, 1200],
-     		density: 4,
+     		density: 3.5,
      		stepped: true
      	},
       tooltips: false,
@@ -769,7 +769,7 @@ export const zivljenjskiIzdatki =  {
       pips: {
      	  mode: 'values',
      		values: [0, 700, 1200, 5500, 8000, 12000],
-     		density: 4,
+     		density: 3.5,
      		stepped: true
      	},
       tooltips: false,
@@ -794,7 +794,7 @@ export const pokojnina =  {
       pips: {
     		mode: 'values',
     		values: [0, 10, 15, 20, 30, 45],
-    		density: 4,
+    		density: 2.25,
     		stepped: true
     	},
       tooltips: false,
@@ -814,7 +814,7 @@ export const pokojnina =  {
       pips: {
     		mode: 'values',
     		values: [0, 10, 15, 20, 30, 45],
-    		density: 4,
+    		density: 2.25,
     		stepped: true
     	},
       tooltips: false,
@@ -864,17 +864,47 @@ export const izdatkiVPokoju =  {
     },
     value: "MESECNO"
   },
-  nepremicninskiIzdatki_dodatek: {
+  nepremicninskiIzdatki_dodatek_mesecno: {
     label: "",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 3000,
-      step: 10
+      range: {
+        'min': [0, 1],
+        '40%': [100, 10],
+      	'max': [1000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 50, 100, 500, 750, 1000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 150
+  },
+  nepremicninskiIzdatki_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+        '40%': [1000, 100],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 500, 1000, 5000, 7500, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    },
+    value: 1500
   },
   zivljenjskiIzdatki: {
     label: "Življenjski izdatki v pokoju",
@@ -889,17 +919,69 @@ export const izdatkiVPokoju =  {
     },
     value: "MESECNO"
   },
-  zivljenjskiIzdatki_dodatek: {
+  zivljenjskiIzdatki_dodatek_mesecno: {
     label: "",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 3000,
-      step: 10
+      range: {
+        'min': [0, 1],
+        '40%': [100, 10],
+      	'max': [1500]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 100, 300, 750, 1000, 1500],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 200
+  },
+  zivljenjskiIzdatki_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+        '40%': [1000, 100],
+      	'max': [15000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 500, 2000, 7500, 10000, 15000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    },
+    value: 2000
+  },
+  neposredni_izdatki: {
+    label: "Izdatki iz žepa ali neposredni izdatki za zdravje in zdravljenje v pokoju",
+    helpText: "(stroški, ki jih zdravstveno zavarovanje ne krije)",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 167
   },
   pomembno: {
     type: "label_heading_italic",
@@ -926,17 +1008,47 @@ export const izdatkiVPokoju =  {
     },
     value: "MESECNO"
   },
-  potovanjaInZabava_dodatek: {
+  potovanjaInZabava_dodatek_mesecno: {
     label: "",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 3000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 150
+  },
+  potovanjaInZabava_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+     	  '40%': [2000, 100],
+     	  'max': [20000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 1000, 2000, 10000, 15000, 20000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
+    },
+    value: 1500
   },
   ostaliIzdatki: {
     label: "Ostali izdatki v pokoju",
@@ -951,54 +1063,113 @@ export const izdatkiVPokoju =  {
     },
     value: "MESECNO"
   },
-  ostaliIzdatki_dodatek: {
+  ostaliIzdatki_dodatek_mesecno: {
     label: "",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 3000,
-      step: 10
+      range: {
+        'min': [0, 1],
+        '40%': [100, 10],
+      	'max': [1500]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 50, 200, 750, 1000, 1500],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 100
+  },
+  ostaliIzdatki_dodatek_letno: {
+    label: "",
+    type: "slider",
+    required: true,
+    props: {
+      range: {
+        'min': [0, 10],
+        '40%': [1000, 100],
+      	'max': [15000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 500, 2000, 7500, 10000, 15000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
+    },
+    value: 1000
   }
 };
 
 export const obveznostiMedUpokojitvijo =  {
   pricakovanaVrednostHipoteke: {
     label: "Pričakovana vrednost hipoteke ob upokojitvi",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 500000,
-      step: 1000
+      range: {
+        'min': [0, 100],
+        '40%': [50000, 1000],
+      	'max': [500000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20000, 40000, 100000, 250000, 500000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 0
   },
   pricakovaniKrediti: {
     label: "Pričakovani krediti ob upokojitvi",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 0
   },
   dediscina: {
     label: "Dediščina, ki jo želite zapustiti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   }
@@ -1011,37 +1182,62 @@ export const pokojninskaRezerva =  {
   },
   dodatnoZavarovanje_delodajalec: {
     label: "Znesek, ki ga plačuje delodajalec",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 160,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [160]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 40, 75, 100, 120, 160],
+    		density: 5,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 40
   },
   dodatnoZavarovanje_posameznik: {
     label: "Znesek, ki ga plačujete sami",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 300,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [300]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 40, 75, 150, 250, 300],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 40
   },
   dodatnoZavarovanje_trenutno: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100000,
-      step: 100
+      range: {
+        'min': [0, 100],
+        '40%': [10000, 1000],
+      	'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 4000, 8000, 20000, 50000, 100000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 8000
   },
@@ -1051,25 +1247,43 @@ export const pokojninskaRezerva =  {
   },
   trenutnoMesecnoZavarovanje_mesec: {
     label: "Mesečni znesek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 5000,
-      step: 10
+      range: {
+        'min': [0, 1],
+        '40%': [500, 100],
+      	'max': [5000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 200, 400, 1000, 2500, 5000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 150
   },
   trenutnoMesecnoZavarovanje_trenutno: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 400000,
-      step: 100
+      range: {
+        'min': [0, 100],
+        '40%': [40000, 1000],
+      	'max': [400000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 15000, 30000, 100000, 250000, 400000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 19000
   },
@@ -1079,13 +1293,24 @@ export const pokojninskaRezerva =  {
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 25000
   }
@@ -1107,13 +1332,21 @@ export const otrokovoIzobrazevanje =  {
   },
   varcevanjeZaOtrokovoIzobrazevanje_dodatek: {
     label: "Število otrok, ki gredo študirat",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [10]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2, 4, 6, 8, 10],
+    		density: 9,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 2
   },
@@ -1156,13 +1389,21 @@ export const otrok1 =  {
   },
   starost: {
     label: "Starost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 20,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [15]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2, 4, 8, 12, 15],
+    		density: 6,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5
   },
@@ -1178,13 +1419,21 @@ export const otrok1 =  {
   },
   odstotekStroskov: {
     label: "% od vseh stroškov, ki jih nameravate plačati za študij otroka (%)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [100]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20, 40, 60, 80, 100],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 75
   },
@@ -1194,25 +1443,43 @@ export const otrok1 =  {
   },
   mesecnoVarcevanje_mesecno: {
     label: "Mesečni znesek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 50
   },
   mesecnoVarcevanje_trenutno: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 300000,
-      step: 100
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [300000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 75000, 150000, 250000, 300000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 3400
   },
@@ -1222,13 +1489,22 @@ export const otrok1 =  {
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 300000,
-      step: 100
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [300000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 75000, 150000, 250000, 300000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 2900
   }
@@ -1258,25 +1534,42 @@ export const zdravjeVPokoju =  {
   },
   varcevanjeZaOtroka_mesecno: {
     label: "Mesečni znesek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 200,
-      step: 1
+      range: {
+        'min': [0, 1],
+     	  'max': [200]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 20, 50, 100, 150, 200],
+     		density: 5,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 50
   },
   varcevanjeZaOtroka_trenutno: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '40%': [5000, 1000],
+      	'max': [50000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 10000, 25000, 50000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 1000
   },
@@ -1286,13 +1579,22 @@ export const zdravjeVPokoju =  {
   },
   enkratnoInvestiranje: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '40%': [5000, 1000],
+      	'max': [50000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 10000, 25000, 50000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 2500
   },
@@ -1316,37 +1618,62 @@ export const zascitaZivljenja =  {
   },
   partnerOdvisen_dodatek1: {
     label: "Partnerjev mesečni dohodek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '40%': [2000, 100],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 1000, 2000, 4000, 7500, 10000],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 1200
   },
   partnerOdvisen_dodatek2: {
     label: "Starost partnerja",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 18,
-      max: 99,
-      step: 1
+      range: {
+        'min': [18, 1],
+      	'max': [99]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [18, 30, 45, 65, 80, 99],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 40
   },
   partnerOdvisen_dodatek3: {
     label: "Leta do upokojitve partnerja",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 45,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [45]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 5, 12, 25, 35, 45],
+    		density: 2.25,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 25
   },
@@ -1354,23 +1681,42 @@ export const zascitaZivljenja =  {
     label: "Mesečni znesek dohodka za partnerja za namen vzdrževanja družine",
     helpText: "(v primeru izpada vašega dohodka)",
     required: true,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 2000,
-      step: 10
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
     value: 400
   },
   dodatenDohodek: {
     label: "Koliko let je potreben dodaten dohodek za partnerja za namen vzdrževanja družine?",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 1,
-      max: 25,
-      step: 1
+      range: {
+        'min': [1, 1],
+      	'max': [25]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [1, 5, 10, 15, 20, 25],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 14
   },
@@ -1385,73 +1731,127 @@ export const zascitaZivljenja =  {
   },
   steviloOtrok_dodatek: {
     label: "Starost otroka",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 20,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [15]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 3, 6, 9, 12, 15],
+    		density: 6,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5
   },
   procentStroskovZaPlacati: {
     label: "% od celotnih stroškov, ki jih nameravate plačati - zavarovati za študij otroka (%)",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [100]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20, 40, 60, 80, 100],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 75
   },
   mesecniZnesekDohodka: {
-    label: "Mesečni znesek dohodka za namen vzdrževanja družine",
+    label: "Mesečni znesek dohodka za partnerja za namen vzdrževanja družine",
     helpText: "(v primeru izpada vašega dohodka)",
     required: true,
-    type: "range",
+    type: "slider",
+    required: true,
     props: {
-      min: 0,
-      max: 10000,
-      step: 100
+      range: {
+        'min': [0, 1],
+     	  '40%': [200, 10],
+     	  'max': [2000]
+      },
+      pips: {
+     	  mode: 'values',
+     		values: [0, 100, 200, 1000, 1500, 2000],
+     		density: 4,
+     		stepped: true
+     	},
+      tooltips: false,
+      currency: true
     },
-    value: 700
+    value: 400
   },
   glavnicaDolgov: {
     label: "Glavnica vseh dolgov",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100000,
-      step: 100
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [300000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 75000, 150000, 250000, 300000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 2000
+    value: 10000
   },
   zavarovanjaZivljenje: {
     label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito življenja",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 200000,
-      step: 1000
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 100000, 150000, 200000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaKrediti: {
     label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito kreditov",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 200000,
-      step: 1000
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 100000, 150000, 200000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 100000
   }
@@ -1468,13 +1868,21 @@ export const zascitaDelovneSposobnosti =  {
   },
   delovnaDoba: {
     label: "Delovna doba",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 80,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [80]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 20, 40, 60, 80],
+    		density: 5,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 40
   },
@@ -1525,25 +1933,43 @@ export const zascitaDelovneSposobnosti =  {
   },
   vrednostZavarovanjInvalidnost: {
     label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito invalidnosti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
-    },
-    value: 250000
+      range: {
+        'min': [0, 100],
+        '10%': [10000, 1000],
+        '50%': [100000, 10000],
+        'max': [2000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 1000000, 2000000],
+        density: 2,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
+    }
   },
   vrednostZavarovanjBolezni: {
     label: "Trenutna vrednost vseh že sklenjenih zavarovanj za zaščito težjih bolezni",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 300000,
-      step: 1000
+      range: {
+        'min': [0, 100],
+        '20%': [10000, 1000],
+      	'max': [300000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 75000, 150000, 250000, 300000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 100000
   },
@@ -1684,25 +2110,41 @@ export const analizaStroskovInPregledProduktov =  {
   },
   tipProdukta_mesecniZnesek: {
     label: "Mesečni znesek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
+      range: {
+        'min': [0, 10],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 6000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5000
   },
   tipProdukta_trenutnaVrednost: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
+      range: {
+        'min': [0, 10],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 6000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5000
   },
@@ -1712,61 +2154,97 @@ export const analizaStroskovInPregledProduktov =  {
   },
   zavarovanjaNaProduktu_zivljenskoZavarovanje: {
     label: "Življenjsko zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_dodatnaZavarovanja: {
-    label: "Dodatna zavarovanja",
-    helpText: "",
-    required: true,
-    type: "range",
-    props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
-    },
-    value: 50000
+    type: "label_subheading_normal",
+    value: "Dodatna zavarovanja"
   },
   zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje: {
     label: "Dodatno nezgodno zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni: {
     label: "Dodatno zavarovanje hujših bolezni",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_strosekDodatnihZavarovanj: {
     label: "Strošek dodatnih zavarovanj",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
@@ -1802,25 +2280,41 @@ export const analizaStroskovInPregledProduktov =  {
   },
   tipProdukta_mesecniZnesek2: {
     label: "Mesečni znesek",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
+      range: {
+        'min': [0, 10],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 6000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5000
   },
   tipProdukta_trenutnaVrednost2: {
     label: "Trenutna vrednost",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 10000,
-      step: 10
+      range: {
+        'min': [0, 10],
+      	'max': [10000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 6000, 8000, 10000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: false
     },
     value: 5000
   },
@@ -1830,61 +2324,97 @@ export const analizaStroskovInPregledProduktov =  {
   },
   zavarovanjaNaProduktu_zivljenskoZavarovanje2: {
     label: "Življenjsko zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_dodatnaZavarovanja2: {
-    label: "Dodatna zavarovanja",
-    helpText: "",
-    required: true,
-    type: "range",
-    props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
-    },
-    value: 50000
+    type: "label_subheading_normal",
+    value: "Dodatna zavarovanja"
   },
   zavarovanjaNaProduktu_dodatnoNezgodnoZavarovanje2: {
     label: "Dodatno nezgodno zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_dodatnoZavarovanjeHujsihBolezni2: {
     label: "Dodatno zavarovanje hujših bolezni",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanjaNaProduktu_strosekDodatnihZavarovanj2: {
     label: "Strošek dodatnih zavarovanj",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 1000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        'max': [1000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 250000, 650000, 1000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
@@ -1898,51 +2428,96 @@ export const analizaStroskovInPregledProduktov =  {
   },
   denarnaSredstva: {
     label: "Denarna sredstva",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        '90%': [1000000, 100000],
+        'max': [2000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 200000, 750000, 2000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 50000
   },
   vzajemniSkladi: {
     label: "Vzajemni skladi",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        '90%': [1000000, 100000],
+        'max': [2000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 200000, 750000, 2000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 50000
   },
   delnice: {
     label: "Delnice in ostali instrumenti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [5000, 100],
+        '35%': [50000, 1000],
+        '65%': [250000, 10000],
+        '90%': [1000000, 100000],
+        'max': [2000000]
+      },
+      pips: {
+        mode: 'values',
+        values: [0, 10000, 50000, 200000, 750000, 2000000],
+        density: 3,
+        stepped: true
+      },
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 50000
   },
   enkratniNalozbeniProdukti: {
     label: "Enkratni naložbeni produkti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '40%': [5000, 1000],
+      	'max': [50000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 10000, 25000, 50000],
+    		density: 4,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 10000
+    value: 25000
   },
   naslov6: {
     type: "label_subheading_normal",
@@ -1950,61 +2525,91 @@ export const analizaStroskovInPregledProduktov =  {
   },
   zavarovanja1: {
     label: "Življenjsko zavarovanja",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '20%': [3000, 100],
+        '50%': [7000, 1000],
+      	'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 10000, 50000, 100000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanja2: {
-    label: "Dodatna zavarovanja",
-    helpText: "",
-    required: true,
-    type: "range",
-    props: {
-      min: 0,
-      max: 100000,
-      step: 1000
-    },
-    value: 50000
+    type: "label_subheading_normal",
+    value: "Dodatna zavarovanja"
   },
   zavarovanja3: {
     label: "Dodatno nezgodno zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 150000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [150000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 150000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 75000
   },
   zavarovanja4: {
     label: "Dodatno zavarovanje hujših bolezni",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 150000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [150000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 150000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 75000
   },
   zavarovanja5: {
     label: "Strošek dodatnih zavarovanj",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [50]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10, 20, 30, 40, 50],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 25
   },
@@ -2014,51 +2619,91 @@ export const analizaStroskovInPregledProduktov =  {
   },
   denarnaSredstva2: {
     label: "Denarna sredstva",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 200000],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 100000
   },
   vzajemniSkladi2: {
     label: "Vzajemni skladi",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 200000],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 100000
   },
   delnice2: {
     label: "Delnice in ostali instrumenti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 2000000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 200000],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 200000
+    value: 100000
   },
   enkratniNalozbeniProdukti2: {
     label: "Enkratni naložbeni produkti",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50000,
-      step: 100
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [200000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 200000],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
-    value: 10000
+    value: 100000
   },
   naslov8: {
     type: "label_subheading_normal",
@@ -2066,61 +2711,91 @@ export const analizaStroskovInPregledProduktov =  {
   },
   zavarovanja11: {
     label: "Življenjsko zavarovanja",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 100000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '20%': [3000, 100],
+        '50%': [7000, 1000],
+      	'max': [100000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 2000, 4000, 10000, 50000, 100000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 50000
   },
   zavarovanja22: {
-    label: "Dodatna zavarovanja",
-    helpText: "",
-    required: true,
-    type: "range",
-    props: {
-      min: 0,
-      max: 100000,
-      step: 1000
-    },
-    value: 50000
+    type: "label_subheading_normal",
+    value: "Dodatna zavarovanja"
   },
   zavarovanja33: {
     label: "Dodatno nezgodno zavarovanje",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 150000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [150000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 150000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 75000
   },
   zavarovanja44: {
     label: "Dodatno zavarovanje hujših bolezni",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 150000,
-      step: 1000
+      range: {
+        'min': [0, 10],
+        '10%': [10000, 100],
+        '70%': [100000, 1000],
+      	'max': [150000]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10000, 50000, 75000, 100000, 150000],
+    		density: 3,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 75000
   },
   zavarovanja55: {
     label: "Strošek dodatnih zavarovanj",
-    helpText: "",
+    type: "slider",
     required: true,
-    type: "range",
     props: {
-      min: 0,
-      max: 50,
-      step: 1
+      range: {
+        'min': [0, 1],
+      	'max': [50]
+      },
+      pips: {
+    		mode: 'values',
+    		values: [0, 10, 20, 30, 40, 50],
+    		density: 2,
+    		stepped: true
+    	},
+      tooltips: false,
+      currency: true
     },
     value: 25
   }

@@ -93,8 +93,11 @@ function prihodnost() {
     {
       key: "izdatkiVPokoju",
       title: "Izdatki v pokoju (v današnjih evrih)",
-      fieldsFunction: (data) => ["id", "nepremicninskiIzdatki", "nepremicninskiIzdatki_dodatek", "zivljenjskiIzdatki", "zivljenjskiIzdatki_dodatek",
-      "pomembno", "pomembno2", "pomembno3", "potovanjaInZabava", "potovanjaInZabava_dodatek", "ostaliIzdatki", "ostaliIzdatki_dodatek"],
+      fieldsFunction: (data) => ["id", "nepremicninskiIzdatki", data.nepremicninskiIzdatki == "MESECNO" && "nepremicninskiIzdatki_dodatek_mesecno",
+      data.nepremicninskiIzdatki == "LETNO" && "nepremicninskiIzdatki_dodatek_letno", "zivljenjskiIzdatki", data.zivljenjskiIzdatki == "MESECNO" && "zivljenjskiIzdatki_dodatek_mesecno",
+      data.zivljenjskiIzdatki == "LETNO" && "zivljenjskiIzdatki_dodatek_letno", "neposredni_izdatki", "pomembno", "pomembno2", "pomembno3", "potovanjaInZabava",
+      data.potovanjaInZabava == "MESECNO" && "potovanjaInZabava_dodatek_mesecno", data.potovanjaInZabava == "LETNO" && "potovanjaInZabava_dodatek_letno", "ostaliIzdatki",
+      data.ostaliIzdatki == "MESECNO" && "ostaliIzdatki_dodatek_mesecno", data.ostaliIzdatki == "LETNO" && "ostaliIzdatki_dodatek_letno"],
       amount: function(data) {
         return 1;
       }
