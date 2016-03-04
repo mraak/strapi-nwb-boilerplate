@@ -34,7 +34,7 @@ const stateSelector = createSelector(
 // @pureRender
 export default class IFVForm extends Component {
 
-  shouldComponentUpdate(nextProps) {console.log(this.props);
+  shouldComponentUpdate(nextProps) {
     return !R.equals(this.props, nextProps);
   }
 
@@ -62,10 +62,12 @@ export default class IFVForm extends Component {
           ))}
         </column>
 
-        { filteredForms.length > 0 &&
-          <column styleName="fixed-column">
-            <AmountTable filteredForms={filteredForms} formData={formData}/>
-          </column>
+        {
+          // { filteredForms.length > -1 &&
+            <column styleName="fixed-column">
+              <AmountTable filteredForms={filteredForms} formData={formData}/>
+            </column>
+          // }
         }
 
       </row>

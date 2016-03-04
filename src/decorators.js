@@ -57,6 +57,12 @@ export function authenticated(yes = true, path = null) {
   }
 }
 
+// export function shouldUpdate(props) {
+//   return function(Component) {
+//     return !R.equals(this.props, nextProps);
+//   }
+// }
+
 export function waitFor(select) {
   return function(Component) {
     return @connect(state => state) // ({ api }) => ({ api }))
@@ -68,12 +74,12 @@ export function waitFor(select) {
 
       render() {
         const fields = select(this.props);
-        // console.log(fields);
+
         if(fields.filter(item => !item).length)
         return (
           <Preloader size={10}/>
         );
-console.log(this.props);
+
         return (
           <Component {...this.props}/>
         );

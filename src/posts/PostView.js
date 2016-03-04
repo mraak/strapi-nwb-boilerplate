@@ -41,7 +41,7 @@ class Post extends Component {
   shouldComponentUpdate(nextProps) {
     return !R.equals(this.props, nextProps);
   }
-  
+
   render() {
     const { api: { post: { data } } } = this.props;
 

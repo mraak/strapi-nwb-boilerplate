@@ -21,7 +21,7 @@ export class HeaderLink extends Component {
   }
 
   render() {
-    const { name, path, query, index, listClassName, className, onClick } = this.props;
+    const { name, path, query, index, root, listClassName, className, onClick } = this.props;
     const { router } = this.context;
 
     const handleClick = (e) => {
@@ -35,7 +35,7 @@ export class HeaderLink extends Component {
     var element = index ? IndexLink : Link;
 
     return (
-      <li className={listClassName}>{!!path && router.isActive(path, true)
+      <li className={listClassName}>{!!path && router.isActive(path, typeof root == "undefined" ? true : root)
         ? name
         : createElement(element, {
             className,
@@ -55,7 +55,7 @@ export class Heading extends Component {
   shouldComponentUpdate(nextProps) {
     return !R.equals(this.props, nextProps);
   }
-  
+
   render() {
     const {title} = this.props;
 

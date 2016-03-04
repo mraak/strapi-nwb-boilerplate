@@ -14,6 +14,7 @@ import tcon from "../../tcon";
 import R from "ramda";
 
 const links = [
+  require("../../ifv/headerLink"),
   require("../../posts").headerLink
 ];
 
@@ -71,7 +72,7 @@ export default class Header extends Component {
 
         <ul className={classnames(menuClasses)}>
           <li>Hello <ProfileLink/></li>
-          {data && data.map(({ title, route }) => <HeaderLink name={title} path={route}/>)}
+          {data && data.filter(({ published }) => published).map(({ title, route }) => <HeaderLink name={title} path={route}/>)}
           {links}
           <AuthLink/>
         </ul>
