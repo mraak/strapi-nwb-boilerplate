@@ -165,7 +165,6 @@ function fieldValue(field) {
     }
   };
 })
-@connect(state => state)
 @propTypes({
   fields: PropTypes.object.isRequired,
   fieldsFunction: PropTypes.func,
@@ -187,6 +186,10 @@ export default class DynamicForm extends Component {
   //     // handleSubmit(nextProps.values);
   //   }
   // }
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
 
   render() {
     const { fieldKeys, title, model, fields, handleSubmit, resetForm, submit, submitting, error } = this.props;

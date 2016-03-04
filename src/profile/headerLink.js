@@ -3,11 +3,18 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { propTypes } from 'react-props-decorators';
 
+import R from "ramda";
+
 @connect(state => state)
 @propTypes({
   api: PropTypes.object.isRequired
 })
 export default class ProfileLink extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { api: { user: { status, loggedIn, data } } } = this.props;
 

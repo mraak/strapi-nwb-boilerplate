@@ -16,14 +16,28 @@ import * as models from "./IFVFormModel";
 import $ from "jquery";
 import scrollToFixed from "../scrollToFixed";
 
+import R from "ramda";
+
+import { createSelector } from 'reselect';
+
+const stateSelector = createSelector(
+  (state) => state.api,
+  (api) => ({ api })
+);
+
 @waitFor(({ api: { sections } }) => [ sections.data ])
-@connect(state => state, actions)
+@connect( stateSelector, actions)
 @propTypes({
   saveSection: PropTypes.func.isRequired
 })
 @css(require("./IFVForm.less"), { allowMultiple: true })
 // @pureRender
 export default class IFVForm extends Component {
+
+  shouldComponentUpdate(nextProps) {console.log(this.props);
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { api: { sections }, route, saveSection } = this.props;
     const formData = this.props.form;
@@ -60,6 +74,11 @@ export default class IFVForm extends Component {
 }
 
 class AmountTable extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   componentDidMount() {
     $(".sticky").scrollToFixed({
       marginTop: $('.header').outerHeight(true)

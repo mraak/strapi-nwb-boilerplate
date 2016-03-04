@@ -8,6 +8,8 @@ import actions from "./actions";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import ChangePasswordForm from "./ChangePasswordForm";
 
+import R from "ramda";
+
 @connect(state => state, actions)
 @propTypes({
   router: PropTypes.object.isRequired,
@@ -15,6 +17,11 @@ import ChangePasswordForm from "./ChangePasswordForm";
   changePassword: PropTypes.func.isRequired
 })
 export default class PasswordResetView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { router: { location: { query: { token } } }, forgotPassword, changePassword } = this.props;
 

@@ -6,6 +6,8 @@ import { propTypes } from 'react-props-decorators';
 
 import css from 'react-css-modules';
 
+import R from "ramda";
+
 const validate = values => {
   const errors = {};
   if (!values.email) {
@@ -39,6 +41,11 @@ function showErrors(array) {
 })
 @css(require("./ForgotPasswordForm.css"), { allowMultiple: true })
 export default class ForgotPasswordForm extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { fields: { email }, handleSubmit, submit, submitting, error, router: { location: { query } } } = this.props;
 

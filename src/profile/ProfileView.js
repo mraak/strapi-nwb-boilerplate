@@ -9,12 +9,19 @@ import { authenticated } from "../decorators";
 import actions from "./actions";
 import ProfileForm from "./ProfileForm";
 
+import R from "ramda";
+
 @authenticated()
 @connect(state => state, actions)
 @propTypes({
   edit: PropTypes.func.isRequired
 })
 export default class ProfileView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { edit } = this.props;
 

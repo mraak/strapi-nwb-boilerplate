@@ -8,11 +8,18 @@ import { authenticated } from "../decorators";
 
 import IFVForm from "./IFVForm";
 
+import R from "ramda";
+
 @authenticated()
 @connect(state => state)
 @css(require("./IFVView.less"), { allowMultiple: true })
 // @pureRender
 export default class IFVView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { children, routes: [ index, current ] } = this.props;
 

@@ -9,6 +9,8 @@ import { waitFor, title } from "../decorators";
 
 import actions from "./actions";
 
+import R from "ramda";
+
 @title("page", ({ api: { pages: { data } }, params: { route } }) => {
   if(!data)
     return null;
@@ -27,6 +29,11 @@ import actions from "./actions";
   params: PropTypes.object.isRequired
 })
 export default class PageView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   componentWillMount() {
     const { api: { pages: { data } }, params: { route }, fetchPage } = this.props;
 
@@ -50,6 +57,11 @@ export default class PageView extends Component {
   api: PropTypes.object.isRequired
 })
 class Page extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+  
   componentWillMount() {
     this.shouldRedirect(this.props);
   }

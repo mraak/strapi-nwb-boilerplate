@@ -11,6 +11,8 @@ import AuthLink from "../../auth/headerLink";
 import ProfileLink from "../../profile/headerLink";
 import tcon from "../../tcon";
 
+import R from "ramda";
+
 const links = [
   require("../../posts").headerLink
 ];
@@ -25,6 +27,11 @@ const links = [
   router: PropTypes.object.isRequired
 })
 export default class Header extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   componentDidMount() {
     tcon.add(".tcon");
   }

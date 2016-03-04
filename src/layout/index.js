@@ -13,6 +13,8 @@ import { Heading } from "../elements";
 
 import Header from "./header";
 
+import R from "ramda";
+
 function buildPath(routes, i) {
   return _.map(routes.slice(0, i + 1), "path").join("/");
 }
@@ -45,6 +47,11 @@ function buildBreadcrumbs([ root, ...routes ], params, titles) {
   router: PropTypes.object.isRequired
 })
 export default class Layout extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   // TODO: Move me out!
   componentDidMount() {
     const { api: { user, pages: { status } }, fetchUser, fetchPages, fetchSections } = this.props;
