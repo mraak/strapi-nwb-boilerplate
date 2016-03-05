@@ -1,0 +1,13 @@
+{
+  "models":[
+    "page",
+    "post",
+    "profile",
+    "tag",
+    "user"
+  ],
+  "admin":{
+    "email": "admin@example.com",
+    "password": "1"
+  }
+}

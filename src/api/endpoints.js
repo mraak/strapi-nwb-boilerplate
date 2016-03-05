@@ -29,7 +29,10 @@ export default {
     method: "get",
     path: "/api/graphql"
   },
-
+  adminConfig: {
+    method: "get",
+    path: "/api/admin-config"
+  },
   user: {
     method: "get",
     path: "/api/user/:id",

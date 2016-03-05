@@ -6,7 +6,8 @@ const reducers = [
   require("../ifv/reducers"),
   require("../page/reducers"),
   require("../posts/reducers"),
-  require("../profile/reducers")
+  require("../profile/reducers"),
+  require("../admin/reducers")
 ];
 
 export default handleActions({
