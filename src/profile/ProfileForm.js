@@ -16,6 +16,8 @@ import actions from "./actions";
 
 import { upload } from "../fetch";
 
+import R from "ramda";
+
 const validate = values => {
   const errors = {};
 
@@ -76,6 +78,11 @@ function showErrors(array) {
 })
 @css(require("./ProfileForm.less"), { allowMultiple: true })
 export default class ProfileForm extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   constructor() {
     super();
 

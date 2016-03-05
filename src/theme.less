@@ -1,7 +1,7 @@
+@import (reference) './kube/kube.less';
+
 body {
   background-color: #E6E7E8;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .header {
@@ -12,8 +12,15 @@ body {
   }
 }
 
-.breadcrumb li {
-  color: white;
+.breadcrumb {
+  li, a:before {
+    color: white;
+  }
+}
+
+.centered {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 // Sidebar
@@ -51,9 +58,6 @@ fieldset {
   border: none;
   section a {
     width: 100%;
-  }
-  &.white {
-    padding: 0px;
   }
 }
 
@@ -97,4 +101,43 @@ div > label span {  // Radio buttons text
   letter-spacing: 0px;
   padding: 8px;
   width: 100%;
+}
+
+.rc-tooltip, .rc-slider {
+  z-index: 0 !important;
+}
+
+ul.fixed {
+  list-style-type: none;
+  margin: 0px;
+}
+
+@media (max-width: @breakpoint-small) {
+  .scroll-to-fixed-fixed {
+    z-index: initial !important;
+    position: initial !important;
+    width: initial !important;
+    left: initial !important;
+    top: initial !important;
+    bottom: initial !important;
+    margin-left: initial !important;
+  }
+}
+
+div.noUi-target {
+  margin-bottom: 40px !important;
+}
+
+input[type="text"][disabled] {
+  height: 25px;
+  font-size: 15px;
+  opacity: 1;
+}
+
+.Select {
+ z-index: 5;
+}
+
+.Select-placeholder {
+  color: black !important;
 }

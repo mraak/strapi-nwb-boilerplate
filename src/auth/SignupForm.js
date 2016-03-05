@@ -6,6 +6,8 @@ import { propTypes } from 'react-props-decorators';
 
 import css from 'react-css-modules';
 
+import R from "ramda";
+
 const validate = values => {
   const errors = {};
   if (!values.username) {
@@ -55,6 +57,11 @@ function showErrors(array) {
 })
 @css(require("./SignupForm.css"), { allowMultiple: true })
 export default class SignupForm extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { fields: { username, email, password, password2 }, handleSubmit, submit, submitting, error, router: { location: { query } } } = this.props;
 

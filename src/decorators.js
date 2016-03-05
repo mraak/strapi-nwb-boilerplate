@@ -7,6 +7,7 @@ import { routeActions } from 'react-router-redux';
 import { createAction, handleActions } from 'redux-actions';
 import Preloader from 'react-dots-loader';
 import pureRender from "react-purerender";
+import R from "ramda";
 
 function canShow(yes, { api: { user: { status, loggedIn } } }) {
   return status == 1 || yes == !!loggedIn;
@@ -29,6 +30,11 @@ export function authenticated(yes = true, path = null) {
     return @connect(state => state)
     // @pureRender
     class AuthenticatedComponent extends React.Component {
+
+      shouldComponentUpdate(nextProps) {
+        return !R.equals(this.props, nextProps);
+      }
+
       componentWillMount() {
         redirect(yes, path, this.props);
       }
@@ -51,14 +57,24 @@ export function authenticated(yes = true, path = null) {
   }
 }
 
+// export function shouldUpdate(props) {
+//   return function(Component) {
+//     return !R.equals(this.props, nextProps);
+//   }
+// }
+
 export function waitFor(select) {
   return function(Component) {
-    return @connect(state => state)
+    return @connect(state => state) // ({ api }) => ({ api }))
     // @pureRender
     class Wait extends React.Component {
+      shouldComponentUpdate(nextProps) {
+        return !R.equals(this.props, nextProps);
+      }
+
       render() {
         const fields = select(this.props);
-        // console.log(fields);
+
         if(fields.filter(item => !item).length)
         return (
           <Preloader size={10}/>

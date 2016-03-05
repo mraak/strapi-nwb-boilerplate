@@ -9,12 +9,19 @@ import { authenticated } from "../decorators";
 import actions from "./actions";
 import SigninForm from "./SigninForm";
 
+import R from "ramda";
+
 @authenticated(false)
 @connect(state => state, actions)
 @propTypes({
   signin: PropTypes.func.isRequired
 })
 export default class SigninView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { signin } = this.props;
 

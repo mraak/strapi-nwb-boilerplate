@@ -1,7 +1,7 @@
 import { api, graphql } from "../api";
 
 function fetchPages() {
-  return graphql("{ pages { id, title, route } }"); // api("pages", {}, {});
+  return graphql("{ pages { id, title, route, published } }"); // api("pages", {}, {});
 }
 
 function fetchPage(id) {

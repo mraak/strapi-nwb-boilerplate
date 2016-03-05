@@ -11,8 +11,10 @@ import DatePicker from 'react-date-picker';
 import moment from "moment";
 import Slider from 'rc-slider';
 import Select from 'react-select';
+import NoUISlider from 'react-nouislider';
 import R from "ramda";
 import pureRender from "react-purerender";
+import wNumb from "wnumb";
 
 const validate = (values, {model, fields}) => {
   const errors = {};
@@ -22,8 +24,36 @@ const validate = (values, {model, fields}) => {
   });
 
   return errors;
-
 };
+
+function formatInputValue(currency, val) {
+  if(!val)
+    val = 0;
+
+  if(!currency)
+    return Math.round(val);
+
+  var num = Math.round(val).toString();
+
+  if(num.length < 4)
+    return num + " €";
+  else if(num.length == 4)
+    return num.substring(0, 1) + "," + num.substring(1) + " €";
+  else if(num.length == 5)
+    return num.substring(0, 2) + "," + num.substring(2) + " €";
+  else if(num.length == 6)
+    return num.substring(0, 3) + "," + num.substring(3) + " €";
+  else if(num.length == 7)
+    return num.substring(0, 1) + "," + num.substring(1, 4) + "," + num.substring(4) + " €";
+  else if(num.length == 8)
+    return num.substring(0, 2) + "," + num.substring(2, 5) + "," + num.substring(5) + " €";
+}
+
+function onSliderChange(field) {
+  return function(value) {
+    return field.onChange(value[0]);
+  }
+}
 
 function showErrors(array) {
   if(!array)
@@ -40,7 +70,7 @@ function renderElement({ type, props }, field) {
     return createElement(Slider, {
       step: 100,
       ...props,
-      value: field.value,
+      value: fieldValue(field) || 0,
       onChange: field.onChange
     });
 
@@ -51,38 +81,74 @@ function renderElement({ type, props }, field) {
       ...field
     });
 
-  // if(type == "select") {
-  //   return createElement(Select, {
-	// 		disabled: false,
-	// 		clearable: true,
-  //     ...props,
-  //     ...field
-  //   });
-  // }
+  if(type == "select") {
+    return createElement(Select, {
+			disabled: false,
+			clearable: true,
+      ...props,
+      value: field.value,
+      onChange: field.onChange
+    });
+  }
+
+  if(type == "slider") {
+    return (
+      <row>
+      <column cols="10">
+        {createElement(NoUISlider, {
+          format: {
+            to: function(value) {
+              return value;
+            },
+            from: function(value) {
+              return value;
+            }
+          },
+          ...props,
+          start: [fieldValue(field)],
+          onChange: onSliderChange(field),
+          onSlide: onSliderChange(field)
+        })}
+      </column>
+
+      <column cols="2">
+        <input type='text' disabled value={formatInputValue(props.currency, fieldValue(field))} />
+      </column>
+      </row>
+   )
+  }
+
 
   if(type == "label_heading_normal")
-    return createElement("label", {className: "bold"}, field.value);
+    return createElement("label", {className: "bold"}, fieldValue(field));
 
   if(type == "label_heading_italic")
-    return createElement("label", {className: "bold italic"}, field.value);
+    return createElement("label", {className: "bold italic"}, fieldValue(field));
 
   if(type == "label_subheading_normal")
-    return createElement("label", {className: "negative-base-margin"}, field.value);
+    return createElement("label", {className: "negative-bottom-margin"}, fieldValue(field));
 
   if(type == "label_subheading_italic")
-    return createElement("label", {className: "italic negative-base-margin"}, field.value);
+    return createElement("label", {className: "italic negative-base-margin"}, fieldValue(field));
 
   if(type == "label_subheading_italic_margin")
-    return createElement("label", {className: "italic"}, field.value);
+    return createElement("label", {className: "italic"}, fieldValue(field));
 
   if(type == "cite")
-    return createElement("label", {className: "italic small negative-base-margin",}, field.value);
+    return createElement("label", {className: "italic small negative-base-margin",}, fieldValue(field));
 
   return createElement("input", {
     type: type || "text",
     ...props,
     ...field
   });
+}
+
+function fieldValue(field) {
+  if(typeof field.value == "undefined")
+    return field.initialValue;
+
+  return field.value;
 }
 
 @reduxForm({
@@ -93,10 +159,12 @@ function renderElement({ type, props }, field) {
   return {
     fields: keys,
     fieldKeys: keys,
-    initialValues: data || _.mapValues(model, "value")
+    initialValues: {
+      ..._.mapValues(model, "value"),
+      ...(data || {})
+    }
   };
 })
-@connect(state => state)
 @propTypes({
   fields: PropTypes.object.isRequired,
   fieldsFunction: PropTypes.func,
@@ -119,6 +187,10 @@ export default class DynamicForm extends Component {
   //   }
   // }
 
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { fieldKeys, title, model, fields, handleSubmit, resetForm, submit, submitting, error } = this.props;
 
@@ -136,6 +208,7 @@ export default class DynamicForm extends Component {
             return (
               <section key={key}>
                 <label>{element.label} {field.error && <span className="error">{showErrors(field.error)}</span>}</label>
+                {element.helpText && <span className="small">{element.helpText}</span>}
                 {renderElement(element, field)}
               </section>
             );

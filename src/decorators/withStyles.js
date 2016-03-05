@@ -9,11 +9,17 @@
 
 import React, { Component, PropTypes } from 'react';
 
+import R from "ramda";
+
 function withStyles(...styles) {
   return (BaseComponent) => class StyledComponent extends Component {
     static contextTypes = {
       insertCss: PropTypes.func.isRequired,
     };
+
+    shouldComponentUpdate(nextProps) {
+      return !R.equals(this.props, nextProps);
+    }
 
     componentWillMount() {
       this.removeCss = this.context.insertCss.apply(undefined, styles);

@@ -6,6 +6,8 @@ import { HeaderLink } from "../elements";
 
 import actions from "./actions";
 
+import R from "ramda";
+
 @connect(state => state, actions)
 @propTypes({
   api: PropTypes.object.isRequired,
@@ -15,6 +17,11 @@ import actions from "./actions";
   router: PropTypes.object.isRequired
 })
 export default class AuthLink extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const { api: { user: { loggedIn } }, signout, router: { location: { query } } } = this.props;
     const { router } = this.context;

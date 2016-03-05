@@ -4,6 +4,7 @@ import React, { Component, PropTypes, createElement } from 'react';
 import { Link, IndexLink } from 'react-router';
 import { propTypes, contextTypes } from 'react-props-decorators';
 import pureRender from "react-purerender";
+import R from "ramda";
 
 @propTypes({
   name: PropTypes.string.isRequired,
@@ -14,8 +15,13 @@ import pureRender from "react-purerender";
 })
 // @pureRender
 export class HeaderLink extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
-    const { name, path, query, index, className, onClick } = this.props;
+    const { name, path, query, index, root, listClassName, className, onClick } = this.props;
     const { router } = this.context;
 
     const handleClick = (e) => {
@@ -29,7 +35,7 @@ export class HeaderLink extends Component {
     var element = index ? IndexLink : Link;
 
     return (
-      <li>{!!path && router.isActive(path, true)
+      <li className={listClassName}>{!!path && router.isActive(path, typeof root == "undefined" ? true : root)
         ? name
         : createElement(element, {
             className,
@@ -45,6 +51,11 @@ export class HeaderLink extends Component {
 })
 // @pureRender
 export class Heading extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   render() {
     const {title} = this.props;
 

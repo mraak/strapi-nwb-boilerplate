@@ -9,12 +9,16 @@ import { propTypes, contextTypes } from 'react-props-decorators';
 import { HeaderLink } from "../../elements";
 import AuthLink from "../../auth/headerLink";
 import ProfileLink from "../../profile/headerLink";
+import tcon from "../../tcon";
+
+import R from "ramda";
 
 const links = [
+  require("../../ifv/headerLink"),
   require("../../posts").headerLink
 ];
 
-@connect(state => state)
+@connect(state => state, require("./actions"))
 @propTypes({
   api: PropTypes.object.isRequired,
   breadcrumbs: PropTypes.array.isRequired,
@@ -24,17 +28,36 @@ const links = [
   router: PropTypes.object.isRequired
 })
 export default class Header extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
+  componentDidMount() {
+    tcon.add(".tcon");
+  }
+
+  componentWillUnmount() {
+    tcon.remove(".tcon");
+  }
+
   render() {
-    var { api: { user: { loggedIn }, pages: { data } }, breadcrumbs: [ brand, ...routes ], classes, children } = this.props;
+    var { api: { user: { loggedIn }, pages: { data } }, header: { opened }, breadcrumbs: [ brand, ...routes ], classes, children, toggleOpen, dispatch } = this.props;
     const { router } = this.context;
     const breadcrumbs = [
-      <HeaderLink className="brand" index {...brand}/>,
-      ...routes.map(route => <HeaderLink {...route}/>)
+      <HeaderLink listClassName="hide-for-small" className="brand" index {...brand}/>,
+      ...routes.map((route, i) => <HeaderLink listClassName={i < routes.length - 1 ? "hide-for-small" : ""} {...route}/>)
     ];
 
     classes = Object.assign(classes || {}, {
       header: true
     });
+
+    var menuClasses = {
+      right: true,
+      "hide-for-small": true,
+      open: opened
+    };
 
     return (
       <div className={classnames(classes)}>
@@ -42,9 +65,14 @@ export default class Header extends Component {
           {breadcrumbs}
         </ul>
 
-        <ul className="right">
+        <a className="tcon tcon-menu--xcross right show-for-small" aria-label="toggle menu" onClick={toggleOpen}>
+          <span className="tcon-menu__lines" aria-hidden="true"></span>
+          <span className="tcon-visuallyhidden">toggle menu</span>
+        </a>
+
+        <ul className={classnames(menuClasses)}>
           <li>Hello <ProfileLink/></li>
-          {data && data.map(({ title, route }) => <HeaderLink name={title} path={route}/>)}
+          {data && data.filter(({ published }) => published).map(({ title, route }) => <HeaderLink name={title} path={route}/>)}
           {links}
           <AuthLink/>
         </ul>

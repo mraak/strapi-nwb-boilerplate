@@ -10,10 +10,17 @@ import { waitFor } from "../decorators";
 import actions from "./actions";
 import PostView from './PostView';
 
+import R from "ramda";
+
 const step = 5;
 
 @connect(state => state, actions)
 class PostsView extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+
   componentWillMount() {
     const { api: { posts: { status, skip, limit } }, fetchPosts } = this.props;
 
@@ -39,6 +46,11 @@ class PostsView extends Component {
 @waitFor(({ api: { posts } }) => [ posts.data ])
 @connect(state => state, actions)
 class PostsList extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    return !R.equals(this.props, nextProps);
+  }
+  
   render() {
     const { api: { posts: { data } } } = this.props;
 
